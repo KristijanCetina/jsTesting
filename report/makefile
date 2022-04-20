@@ -1,9 +1,10 @@
 .PHONY: all clean
 
-OUTPUT = DiplomskiRad-KristijanCetina.pdf
 FILES =  DiplomskiRad-KristijanCetina
+OUTPUT = $(FILES).pdf
 
-$(OUTPUT): $(FILES).tex
+
+$(OUTPUT): *.tex
 	@echo "Building $(OUTPUT)"
 	@# 2 puta da bi sadržaj bio ažuran + literatura:
 	@pdflatex $(FILES).tex > /dev/null
