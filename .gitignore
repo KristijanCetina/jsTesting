@@ -21,3 +21,15 @@ package-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# LaTex Temp and build files
+report/*.aux
+report/*.bbl
+report/*.blg
+report/*.fls
+report/*.lof
+report/*.log
+report/*.synctex.gz
+report/*.toc
+report/*.fdb_latexmk
+report/*.out
