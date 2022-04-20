@@ -1,0 +1,23 @@
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+node_modules
+package-lock.json
+
+# Local History for Visual Studio Code
+.history/
+
+# Dropbox settings and caches
+.dropbox
+.dropbox.attr
+.dropbox.cache
+
+# vueJs log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
