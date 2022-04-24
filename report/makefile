@@ -3,7 +3,7 @@
 FILES =  DiplomskiRad-KristijanCetina
 OUTPUT = $(FILES).pdf
 
-$(OUTPUT): *.tex
+$(OUTPUT): *.tex literatura.bib
 	@echo "Building $(OUTPUT)"
 	@# 2 puta da bi sadržaj bio ažuran + literatura:
 	@pdflatex $(FILES).tex > /dev/null
