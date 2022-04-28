@@ -26,6 +26,22 @@ npm run build
 npm run lint
 ```
 
+### Cypress test
+
+- specific spec test
+
+  ```bash
+  npm run cy-run -- --spec "cypress/integration/paying/paying.spec.js"
+  ```
+
+- open Test Runner
+
+  ```bash
+  npm run cy-test
+  ```
+
+### Playwright test
+
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
