@@ -33,3 +33,7 @@ report/*.synctex.gz
 report/*.toc
 report/*.fdb_latexmk
 report/*.out
+
+# cypress specific files
+paying_customer/cypress/videos/
+paying_customer/cypress/screenshots/
