@@ -50,6 +50,7 @@
             type="button"
             @click="login()"
             class="btn btn-primary btn-lg btn-block"
+            name="Login"
           >
             Login
           </button>
