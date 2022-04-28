@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "cypress open"
+    "cy-test": "cypress open",
+    "cy-run": "cypress run"
   },
   "dependencies": {
     "@vue-stripe/vue-stripe": "^4.0.3",
