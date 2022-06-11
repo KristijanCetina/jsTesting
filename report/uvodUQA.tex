@@ -1,0 +1,54 @@
+\chapter{Uvod u testiranje programskog rješenje i osiguranje kvalitete}\label{uvodQA}
+
+Testianje softwareskog proizvoda se provodi u cilju osiguravanja kvalitete samog proizvoda.
+Svaka faza razvoja ima svoje specifične zahtjeve i načine testiranja, a njihov pregled je dan na slici \ref{img:testingInScrum}.
+Pojedine funkcije u kodu se pokrivaju unit testovima koji se brinu da pojedine komponente rade ono što su namjenjene na najnižoj razini. To su testovi koji se u pravilu izvršavaju vrlo često prilikom pisanja koda kako bi se osiguralo da promjena neke funkcije ili komponente nije poremetila njen rezultat.
+
+
+\begin{figure}[!h]\begin{center}
+\includegraphics[width=0.8\textwidth]{"img/testPhasesScrum"}
+\caption{Proces testiranja u Scrum metodologiji rada}\label{img:testingInScrum}
+\end{center}\end{figure}
+
+\section{Proces testiranja}
+Svaki proces testiranja započinje sa izradom plana testiranja unutar kojeg se definira šte se testira na koji način te koji su uvjeti da se zadani test smatra uspješnim (\textit{engl. Acceptance critera}).
+
+Tokom samog razvijanja nove funkcionalnosti u softwareskom prozvodu često se izvršava ručno testiranje kako bi se utvrdilo da li proces razvoja ide u zadanom smjenu i u konačnici da se radi ono što je dogovoreno bilo interno s timom ili čak i sa klijentom.
+
+Nakon što se završi sam razvoj nove funkcionalnosti onda se radi i završno funkcionalno testiranje i izrada automatskih testova koji će se u budućnosti izvršavati automatski u zadanom intervalu kako bi se osiguralo da uvođenje nove funkcionalnosti ne uvode nove pogreške na već ispravnim funkcionalnostima.
+Poznato kao i regresijsko testiranje.
+
+Bitno je testirati realne scenarije koji se očekuju da moraju zadovoljiti,  kao i one scenarije od kojih se očekuje da nesmiju proći test.
+To se radi u svrhu potvrde da test zaista radi ono što je namijenjen,  a ne da imamo propust u samom testu koji uvijek vraća pozitivan rezultat ili da testirana funkcija nema implementiranu validaciju ulaznih parametara koji onda mogu izazvati nepoželjno ponašanje programa.
+
+\section{Ciljevi testiranja}
+Ciljevi testiranja moraju zadovoljavati nekoliko kriterija, a to su:
+\begin{itemize}
+\item Specifičnost
+\item Mjerljivost
+\item Ostvarljiv
+\item Realističan
+\item Vremenski ograničen
+\end{itemize}
+
+Neki od ciljeva testiranja su: \cite{quadri2010software}
+\subsection*{Verifikacija i validacija}
+Cilja testiranja nije samo pronaći pogreške u kodu ili dizajnu.  
+Cilj je verificirati da software zaista radi ono što je namjenjen i kako je zamišljen.
+Jedan od rezultata testiranja je i izvještaj (\textit{test report}).
+
+\subsection*{Prioretiziranje pokrivenosti}
+U idealnom svijetu sa neograničenim resursima svaki dio koda i funkcionalnosti bi bio pokriven testovima, ali nažalost to nije moguće.
+Zato je bitno pravilno odrediti što je prioritet te što će se pokriti testovima. 
+U pravilu su to one funkcionalnosti i značajke koje nisu vidljive na prvi pogled čim se otvori program jer su takvi problemi lako uočljivi svakome.
+Isto tako, beskonačni testovi uzimaju mnogo dragocjenog vremena pa je i u tom pogledu bitno odrediti što se treba testirati.
+
+\subsection*{Sljedivost}
+Dokumentiranje testova kada se nešto i kako testiralo je bitno kako bi se u slučaju pojave problema moglo odrediti kada je i koja promjena uzrokovala neželjeno ponašanje proizvoda.
+To je posebno bitno u odreženim kategorijama softwarea kao npr. u financijskom poslovanju gdje se može tražiti dodatna odgovornost samog proizvoda.
+
+\section{Uloga testera u timu}
+Glavna uloga testera, kao i samog procesa testiranja, je dodatna sigurnosna mreža koja je samo zadnja karika u lancu procesa testiranja i osiguranja kvalitete proizvoda.
+Dok su programeri (\textit{developeri, engl. developers}) zaduženi za pisanje unit testova,  testeri su zaduženi za pisanje i izvršavanje funkcionalnih testova.
+Testeri također pomažu product owneru sa izradom kriterija za uspješno prihvačanje rezultata testova \cite{mundra2013practical}.
+Bitno je napomenuti kako su i developeri i testeri dio istog tima te  kao tim imaju zajednički cilj - isporuka najkvalitetnijeg proizvoda moguće unutar zadanih parametara.

@@ -12,7 +12,7 @@ $(OUTPUT): *.tex literatura.bib
 	@echo "$(OUTPUT) created"
 	
 clean:
-	@$(RM) -f *.dvi *.log *.aux *.swp *.swo *.toc *.idx *.lof *.out *.bbl *.blg *.fls *.out *.fdb_latexmk *..synctex.gz
+	@$(RM) -f *.dvi *.log *.aux *.swp *.swo *.toc *.idx *.lof *.out *.bbl *.blg *.fls *.out *.fdb_latexmk *.synctex.gz
 
 wipe:
 	@$(MAKE) clean

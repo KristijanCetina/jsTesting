@@ -22,7 +22,7 @@
 \tolerance=1
 \emergencystretch=\maxdimen %poravnavanje
 \hyphenpenalty=10000 % no hyphenation
-\hbadness=10000	
+\hbadness=10000
 %\usepackage{helvet}
 %\renewcommand{\familydefault}{\sfdefault} % promjeni font
 %\renewcommand{\rmdefault}{phv}
@@ -32,7 +32,7 @@
 \pagenumbering{Roman}
 
 \newcommand{\kolegij}{Diplomski rad}
-\newcommand{\naslovRada}{Automatiziranje testiranja web aplikacija koristeći javascript frameworkove Playwright i Cypress \\ {\large Diplomski rad}} 
+\newcommand{\naslovRada}{Automatiziranje testiranja web aplikacija koristeći  Playwright i Cypress frameworkove \\ {\large Diplomski rad}} 
 \newcommand{\mailFriendlynaslovRada}{Master's Thesis - JS Testing Frameworks}
 
 \author{
@@ -42,6 +42,7 @@ Kristijan Cetina \\{\small JMBAG: 2424011721} \\ {\href{mailto:kristijan.cetina@
 
 \begin{document}
 \pgfplotsset{width=\textwidth,compat=newest}
+
 
 %\begin{titlepage}
 %\clearpage
@@ -57,7 +58,7 @@ Kristijan Cetina \\{\small JMBAG: 2424011721} \\ {\href{mailto:kristijan.cetina@
 %
 %\end{titlepage}
 
-\includepdf[pages={1-},fitpaper]{pocetne_stranice.pdf}
+%\includepdf[pages={1-},fitpaper]{pocetne_stranice.pdf}
 \setcounter{page}{1}
 \include{zahvala}
 \include{izjava}
@@ -70,6 +71,9 @@ Kristijan Cetina \\{\small JMBAG: 2424011721} \\ {\href{mailto:kristijan.cetina@
 
 \pagenumbering{arabic}
 \include{uvod}
+\include{uvodUQA}
+\include{cypress}
+\include{playwright}
 
 \include{zakljucak}
 
@@ -81,7 +85,6 @@ Kristijan Cetina \\{\small JMBAG: 2424011721} \\ {\href{mailto:kristijan.cetina@
 
 \newpage
 
-ovo je test
 \appendix
 \begin{appendices}\appendix
 \chapter{Programski kod na Arduino mikroračunalu}\label{ArduinoSource}
