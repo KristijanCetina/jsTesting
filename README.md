@@ -1,3 +1,5 @@
+# Automated testing using Playwright and Cypress
+
 [![GitHub license](https://img.shields.io/github/license/srggrs/assign-one-project-github-action.svg)][license]
 
 [license]: https://github.com/KristijanCetina/payingCustomer/blob/main/LICENSE
@@ -9,7 +11,7 @@ Na sljedećem linku je dostupna [PDF verzija rada](https://github.com/KristijanC
 ## purpose
 
 Master's Thesis for Kristijan Cetina
-[Fakultet informatike u Puli ](https://fipu.unipu.hr/)
+[Fakultet informatike u Puli](https://fipu.unipu.hr/)
 
 Mentor: [doc. dr. sc. Nikola Tanković](https://ntankovic.unipu.hr/)
 
