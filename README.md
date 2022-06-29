@@ -6,7 +6,7 @@
 
 Kristijan Cetina <kristijan.cetina@icloud.com>
 
-Na sljedećem linku je dostupna [PDF verzija rada](https://github.com/KristijanCetina/jsTesting/blob/79f06105f49694ebd364a3615284901d5f90a7ba/report/DiplomskiRad-KristijanCetina.pdf)
+Na sljedećem linku je dostupna [PDF verzija rada](https://github.com/KristijanCetina/jsTesting/blob/master/report/DiplomskiRad-KristijanCetina.pdf)
 
 ## purpose
 
