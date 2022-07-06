@@ -42,4 +42,20 @@ npm run lint
 
 ### Playwright test
 
-### Customize configuration
+- run all test
+
+  ```bash
+  npm run pw-test
+  ```
+
+- run specific test
+
+  ```bash
+  npm run pw-test playwrightTests/basicSignUp.spec.ts
+  ```
+
+- run tests in single thread
+
+  ```bash
+  npm run pw-test -- --workers 1
+  ```
