@@ -1,5 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
-import * as globals from './shared.spec';
+import sharedSpec from './shared.spec';
 
 test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:8080/login');
@@ -8,8 +8,8 @@ test.beforeEach(async ({ page }) => {
 test.describe('Login to the app with created credentials', () => {
     test('should have been login to app and have elements on page', async ({ page }) => {
         await expect(page).toHaveURL('http://localhost:8080/login');
-        await page.locator('[placeholder="Enter email"]').fill('neaps.drawn0k@icloud.com');
-        await page.locator('[placeholder="Password"]').fill('ValidPassword123');
+        await page.locator('[placeholder="Enter email"]').fill(sharedSpec.email);
+        await page.locator('[placeholder="Password"]').fill(sharedSpec.password);
         await page.locator('button[name="Login"]').click();
 
         await expect(page).toHaveURL('http://localhost:8080/subscription');
