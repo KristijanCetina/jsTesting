@@ -45,17 +45,17 @@ npm run lint
 - run all test
 
   ```bash
-  npm run pw-test
+  npm run pw-run
   ```
 
 - run specific test
 
   ```bash
-  npm run pw-test playwrightTests/basicSignUp.spec.ts
+  npm run pw-run playwrightTests/basicSignUp.spec.ts
   ```
 
 - run tests in single thread
 
   ```bash
-  npm run pw-test -- --workers 1
+  npm run pw-run -- --workers 1
   ```
