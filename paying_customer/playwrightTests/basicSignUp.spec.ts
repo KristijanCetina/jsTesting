@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import sharedSpec from './shared.spec';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:8080');
+    await page.goto(sharedSpec.baseURL);
 });
 
 test.describe('Open app and check basic elements', () => {
