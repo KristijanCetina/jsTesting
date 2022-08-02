@@ -1,4 +1,4 @@
-# Automated testing using Playwright and Cypress
+# Testiranje klijentskih komponenti web aplikacija pomoću alata Playwright i Cypress
 
 [![GitHub license](https://img.shields.io/github/license/srggrs/assign-one-project-github-action.svg)][license]
 

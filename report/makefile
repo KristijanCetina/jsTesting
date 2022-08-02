@@ -9,6 +9,7 @@ $(OUTPUT): *.tex literatura.bib
 	@pdflatex $(FILES).tex > /dev/null
 	@bibtex $(FILES).aux > /dev/null
 	@pdflatex $(FILES).tex > /dev/null
+	@pdflatex $(FILES).tex > /dev/null
 	@echo "$(OUTPUT) created"
 	
 clean:
