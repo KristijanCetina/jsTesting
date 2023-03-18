@@ -5,12 +5,8 @@
       <div class="row">
         <div class="col-5 imgH">
           <br /><br />
-          <img
-            style="width: 400px; margin-left: 53px; border-radius: 83px"
-            src="@/assets/logoPC.png"
-            class="img-fluid"
-            alt="Logo"
-          />
+          <img style="width: 400px; margin-left: 53px; border-radius: 83px" src="/src/assets/logoPC.png" class="img-fluid"
+            alt="Logo" />
           <div style="margin-left: 32%; margin-top: 10px">
             <a href="#" class="mx auto fa fa-facebook"></a>&nbsp;
             <a href="#" class="fa fa-linkedin"></a>&nbsp;
@@ -21,24 +17,13 @@
           <h1 style="color: #384F7B;">NEWS</h1>
           <br />
           <div class="row">
-            <newsCard
-              class="alignCard"
-              v-for="news in displayNews" :key="news.id" :name="news.name" :tekst="news.tekst" :date="news.date"
-            ></newsCard>
+            <newsCard class="alignCard" v-for="news in displayNews" :key="news.id" :name="news.name" :tekst="news.tekst"
+              :date="news.date"></newsCard>
           </div>
           <div class="mt-3">
-            <b-pagination
-              pills
-              v-model="currentPage"
-              :total-rows="rows"
-              :per-page="perPage"
-              first-text="First"
-              prev-text="Prev"
-              next-text="Next"
-              last-text="Last"
-              @input="paginate(currentPage)"
-              align="center"
-            ></b-pagination>
+            <b-pagination pills v-model="currentPage" :total-rows="rows" :per-page="perPage" first-text="First"
+              prev-text="Prev" next-text="Next" last-text="Last" @input="paginate(currentPage)"
+              align="center"></b-pagination>
           </div>
         </div>
       </div>
@@ -47,9 +32,9 @@
 </template>
 
 <script>
-import newsCard from "@/components/newsCard";
-import { fetchNewsData } from "@/commonShared";
-import store from "@/store";
+import newsCard from "/src/components/newsCard";
+import { fetchNewsData } from "/src/commonShared";
+import store from "/src/store";
 
 export default {
   name: "app",
@@ -70,10 +55,10 @@ export default {
     };
   },
   methods: {
-    async fetchNewsData(){
+    async fetchNewsData() {
       this.rows = this.displayNews.store.length;
     },
-    
+
     paginate(currentPage) {
       const start = (currentPage - 1) * this.perPage;
       this.displayNews = this.news.slice(start, start + 2);
@@ -87,12 +72,15 @@ export default {
   .imgH {
     display: none;
   }
+
   .blueLine {
     display: none;
   }
+
   .alignCard {
     margin: auto;
   }
+
   h1 {
     margin-top: 15px;
   }

@@ -8,9 +8,7 @@
           <h2>Ovdje možete stvoriti nove pretplate</h2>
         </div>
         <template>
-          <b-button @click="$bvModal.show('modal')"
-            >Stvori novu pretplatu</b-button
-          >
+          <b-button @click="$bvModal.show('modal')">Stvori novu pretplatu</b-button>
 
           <b-modal id="modal">
             <template #modal-header="{}">
@@ -21,59 +19,28 @@
             <template #default="{}">
               <form>
                 <div class="form-group">
-                  <input
-                    v-model="suma"
-                    type="suma"
-                    class="form-control"
-                    id="suma"
-                    aria-describedby="emailHelp"
-                    placeholder="Unesite vrijednost pretplate, npr. 300kn"
-                  />
+                  <input v-model="suma" type="suma" class="form-control" id="suma" aria-describedby="emailHelp"
+                    placeholder="Unesite vrijednost pretplate, npr. 300kn" />
                 </div>
                 <div class="form-group">
-                  <input
-                    v-model="slika"
-                    type="slika"
-                    class="form-control"
-                    id="slika"
-                    placeholder="URL slike kojom ćete predstavljati"
-                  />
+                  <input v-model="slika" type="slika" class="form-control" id="slika"
+                    placeholder="URL slike kojom ćete predstavljati" />
                 </div>
                 <div class="form-group">
-                  <input
-                    v-model="naziv"
-                    type="naziv"
-                    class="form-control"
-                    id="naziv"
-                    placeholder="Naziv po kojem ćete prepoznati plan"
-                  />
+                  <input v-model="naziv" type="naziv" class="form-control" id="naziv"
+                    placeholder="Naziv po kojem ćete prepoznati plan" />
                 </div>
                 <div class="form-group">
-                  <input
-                    v-model="tekst"
-                    type="tekst"
-                    class="form-control"
-                    id="tekst"
-                    placeholder="Kratki opis pretplate"
-                  />
+                  <input v-model="tekst" type="tekst" class="form-control" id="tekst"
+                    placeholder="Kratki opis pretplate" />
                 </div>
                 <div class="form-group">
-                  <input
-                    v-model="price"
-                    type="price"
-                    class="form-control"
-                    id="price"
-                    placeholder="ID cijene u Stripu, npr. price_1IAe2sB4jY1Sj3hiGgaywwAH"
-                  />
+                  <input v-model="price" type="price" class="form-control" id="price"
+                    placeholder="ID cijene u Stripu, npr. price_1IAe2sB4jY1Sj3hiGgaywwAH" />
                 </div>
                 <div class="form-group">
-                  <input
-                    v-model="id_plan"
-                    type="id_plana"
-                    class="form-control"
-                    id="id_plana"
-                    placeholder="ID plana - služi za sortiranje"
-                  />
+                  <input v-model="id_plan" type="id_plana" class="form-control" id="id_plana"
+                    placeholder="ID plana - služi za sortiranje" />
                 </div>
               </form>
             </template>
@@ -95,15 +62,9 @@
           </h1>
           <br />
           <div class="row h-100">
-            <subscriptionCard
-              v-for="subList in subList"
-              :key="subList.id_plan"
-              :suma="subList.suma"
-              :tekst="subList.tekst"
-              :slika="subList.slika"
-              :naziv="subList.naziv"
-              :price="subList.price"
-            ></subscriptionCard>
+            <subscriptionCard v-for="subList in subList" :key="subList.id_plan" :suma="subList.suma"
+              :tekst="subList.tekst" :slika="subList.slika" :naziv="subList.naziv" :price="subList.price">
+            </subscriptionCard>
           </div>
         </div>
       </div>
@@ -113,9 +74,9 @@
 
 
 <script>
-import admin_navi from "@/components/admin_navi.vue";
-import subscriptionCard from "@/components/subscriptionCard.vue";
-import { db } from "@/firebase";
+import admin_navi from "/src/components/admin_navi.vue";
+import subscriptionCard from "/src/components/subscriptionCard.vue";
+import { db } from "/src/firebase";
 
 export default {
   name: "SubsriptionAdmin",
@@ -167,7 +128,7 @@ export default {
             this.$bvModal.hide("modal");
             location.reload();
           })
-          .then(()=>{
+          .then(() => {
             location.reload();
           })
           .catch((error) => {
@@ -206,12 +167,15 @@ export default {
   .imgH {
     display: none;
   }
+
   .blueLine {
     display: none;
   }
+
   .centerTitle {
     margin-top: 20px;
   }
+
   .col-md-7 {
     margin: auto;
     width: 80%;
@@ -219,6 +183,7 @@ export default {
     padding-right: 0px;
   }
 }
+
 .subAdmin {
   padding-top: 50px;
   padding-bottom: 30px;

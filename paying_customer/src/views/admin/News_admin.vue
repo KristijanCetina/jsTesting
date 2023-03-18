@@ -8,29 +8,13 @@
           <form class=" mb-3 justify-content-center">
             <div class="form-group">
               <label for="postNewNews">objavi novu obavijest:</label>
-              <input
-                v-model="newsTitle"
-                type="text"
-                class="form-control ml-2"
-                placeholder="Naslov obavijesti"
-                id="postNewNews"
-              />
-              <textarea
-                v-model="newsText"
-                type="text"
-                rows="4"
-                class="form-control ml-2"
-                placeholder="Obavijest"
-                id="postNewNews"
-              />
+              <input v-model="newsTitle" type="text" class="form-control ml-2" placeholder="Naslov obavijesti"
+                id="postNewNews" />
+              <textarea v-model="newsText" type="text" rows="4" class="form-control ml-2" placeholder="Obavijest"
+                id="postNewNews" />
             </div>
-            <button
-              id="buttonPost"
-              :disabled="pendingRequest"
-              @click="postNews"
-              type="button"
-              class="btn btn-primary ml-2"
-            >
+            <button id="buttonPost" :disabled="pendingRequest" @click="postNews" type="button"
+              class="btn btn-primary ml-2">
               Objavi obavijest
             </button>
             <br />
@@ -40,28 +24,13 @@
           </form>
         </div>
         <div class="row">
-          <newsCard
-            class="alignCard"
-            v-for="news in displayNews"
-            :key="news.id"
-            :name="news.name"
-            :tekst="news.tekst"
-            :date="news.date"
-          ></newsCard>
+          <newsCard class="alignCard" v-for="news in displayNews" :key="news.id" :name="news.name" :tekst="news.tekst"
+            :date="news.date"></newsCard>
         </div>
         <div class="mt-2">
-          <b-pagination
-            pills
-            v-model="currentPage"
-            :total-rows="rows"
-            :per-page="perPage"
-            first-text="First"
-            prev-text="Prev"
-            next-text="Next"
-            last-text="Last"
-            @input="paginate(currentPage)"
-            align="center"
-          ></b-pagination>
+          <b-pagination pills v-model="currentPage" :total-rows="rows" :per-page="perPage" first-text="First"
+            prev-text="Prev" next-text="Next" last-text="Last" @input="paginate(currentPage)"
+            align="center"></b-pagination>
         </div>
       </div>
     </div>

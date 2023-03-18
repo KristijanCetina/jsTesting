@@ -29,10 +29,10 @@
 </template>
 
 <script>
-import authorized_navi from "@/components/authorized_navi.vue";
-// import subscriptionCard from "@/components/subscriptionCard.vue";
-import store from "@/store";
-import { db } from "@/firebase";
+import authorized_navi from "/src/components/authorized_navi.vue";
+// import subscriptionCard from "/src/components/subscriptionCard.vue";
+import store from "/src/store";
+import { db } from "/src/firebase";
 
 export default {
   name: "Subscription",

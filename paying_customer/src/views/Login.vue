@@ -4,12 +4,8 @@
     <div class="row">
       <div class="col-xs-6 col-md-6 imgH">
         <br><br>
-        <img
-          style="width: 400px; margin-left: 53px; border-radius: 83px"
-          src="@/assets/logoPC.png"
-          class="img-fluid"
-          alt="Logo"
-        />
+        <img style="width: 400px; margin-left: 53px; border-radius: 83px" src="/src/assets/logoPC.png" class="img-fluid"
+          alt="Logo" />
         <div class="socialM" style="margin-left: 27%; margin-top: 10px">
           <a href="#" class="mx auto fa fa-facebook"></a>&nbsp;
           <a href="#" class="fa fa-linkedin"></a>&nbsp;
@@ -22,44 +18,23 @@
         <form>
           <div class="form-group">
             <label for="emailAdress">Email address</label>
-            <input
-              v-model="email"
-              type="email"
-              class="form-control"
-              id="emailAdress"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-            />
+            <input v-model="email" type="email" class="form-control" id="emailAdress" aria-describedby="emailHelp"
+              placeholder="Enter email" />
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input
-              v-model="password"
-              v-on:keyup.enter="login()"
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-            />
+            <input v-model="password" v-on:keyup.enter="login()" type="password" class="form-control"
+              id="exampleInputPassword1" placeholder="Password" />
           </div>
           <div class="row">
             <div class="col"></div>
           </div>
           <br />
-          <button
-            type="button"
-            @click="login()"
-            class="btn btn-primary btn-lg btn-block"
-            name="Login"
-          >
+          <button type="button" @click="login()" class="btn btn-primary btn-lg btn-block" name="Login">
             Login
           </button>
           <br />
-          <button
-            type="button"
-            @click="loginWithGoogle()"
-            class="btn btn-secondary btn-lg btn-block"
-          >
+          <button type="button" @click="loginWithGoogle()" class="btn btn-secondary btn-lg btn-block">
             Login with Google
           </button>
         </form>
@@ -81,20 +56,26 @@
 .btn {
   transition: box-shadow 0.3s;
 }
+
 .btn:hover {
   box-shadow: 15px 15px 30px 0px #384f7b;
 }
+
 @media (max-width: 991px) {
+
   /* za sakrivanje prilikom smanjvanja window-a */
   .imgH {
     display: none;
   }
+
   .blueLine {
     display: none;
   }
+
   .socialM {
     display: none;
   }
+
   .col-xs-6 {
     margin: auto;
   }
@@ -102,8 +83,8 @@
 </style>
 
 <script>
-import store from "@/store";
-import { firebase } from "@/firebase";
+import store from "/src/store";
+import { firebase } from "/src/firebase";
 export default {
   name: "login",
   data() {
@@ -155,7 +136,7 @@ export default {
           }
           store.token = result.credential.accessToken; // mozda cu ga kasnije za nesto koristiti. za test neka ostane
         })
-        .catch(function(error) {
+        .catch(function (error) {
           // Handle Errors here.
           this.errorMessage = error.message;
           alert(this.errorMessage)

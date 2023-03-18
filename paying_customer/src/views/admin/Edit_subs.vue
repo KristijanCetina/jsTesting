@@ -9,60 +9,27 @@
 
           <form>
             <div class="form-group">
-              <input
-                :value="suma"
-                type="suma"
-                class="form-control"
-                id="suma"
-                aria-describedby="emailHelp"
-                placeholder="Unesite vrijednost pretplate, npr. 300kn"
-              />
+              <input :value="suma" type="suma" class="form-control" id="suma" aria-describedby="emailHelp"
+                placeholder="Unesite vrijednost pretplate, npr. 300kn" />
             </div>
             <div class="form-group">
-              <input
-                v-model="slika"
-                type="slika"
-                class="form-control"
-                id="slika"
-                placeholder="URL slike kojom ćete predstavljati"
-              />
+              <input v-model="slika" type="slika" class="form-control" id="slika"
+                placeholder="URL slike kojom ćete predstavljati" />
             </div>
             <div class="form-group">
-              <input
-                v-model="naziv"
-                type="naziv"
-                class="form-control"
-                id="naziv"
-                placeholder="Naziv po kojem ćete prepoznati plan"
-              />
+              <input v-model="naziv" type="naziv" class="form-control" id="naziv"
+                placeholder="Naziv po kojem ćete prepoznati plan" />
             </div>
             <div class="form-group">
-              <input
-                v-model="tekst"
-                type="tekst"
-                class="form-control"
-                id="tekst"
-                placeholder="Kratki opis pretplate"
-              />
+              <input v-model="tekst" type="tekst" class="form-control" id="tekst" placeholder="Kratki opis pretplate" />
             </div>
             <div class="form-group">
-              <input
-                v-model="price"
-                type="price"
-                class="form-control"
-                id="price"
-                placeholder="ID cijene u Stripu, npr. price_1IAe2sB4jY1Sj3hiGgaywwAH"
-                readonly
-              />
+              <input v-model="price" type="price" class="form-control" id="price"
+                placeholder="ID cijene u Stripu, npr. price_1IAe2sB4jY1Sj3hiGgaywwAH" readonly />
             </div>
             <div class="form-group">
-              <input
-                v-model="id_plan"
-                type="id_plana"
-                class="form-control"
-                id="id_plana"
-                placeholder="ID plana - mora biti jedinstven i numerički"
-              />
+              <input v-model="id_plan" type="id_plana" class="form-control" id="id_plana"
+                placeholder="ID plana - mora biti jedinstven i numerički" />
             </div>
             <b-button class="mr-1" @click="editSub"> SAVE </b-button>
             <b-button class="mr-1" variant="danger" @click="cancelEdit">
@@ -76,9 +43,9 @@
 </template>
 
 <script>
-import admin_navi from "@/components/admin_navi.vue";
-import { db } from "@/firebase";
-import store from "@/store";
+import admin_navi from "/src/components/admin_navi.vue";
+import { db } from "/src/firebase";
+import store from "/src/store";
 
 export default {
   name: "EditSubs",
@@ -161,7 +128,7 @@ export default {
           });
       }
     },
-    cancelEdit(){
+    cancelEdit() {
       this.$alert("Odustali ste od promjena!");
       this.$router.replace({ name: "Subscription_admin" });
     }

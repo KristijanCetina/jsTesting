@@ -1,31 +1,31 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import store from "@/store";
-import AboutUs from '../views/AboutUs.vue'
-import Contact from '../views/Contact.vue'
-import Calendar from '../views/Calendar.vue'
-import News from '../views/News.vue'
-import Cancel from '../views/Cancel.vue'
-import Login from '../views/Login.vue'
-import Signup from '../views/Signup.vue'
-import Subscription from '../views/Subscription.vue'
-import MyPayments from '../views/MyPayments.vue'
-import Calendar_dash from '../views/Calendar_dash.vue'
-import News_dash from '../views/News_dash.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../views/Home.vue';
+import store from '../store';
+import AboutUs from '../views/AboutUs.vue';
+import Contact from '../views/Contact.vue';
+import Calendar from '../views/Calendar.vue';
+import News from '../views/News.vue';
+import Cancel from '../views/Cancel.vue';
+import Login from '../views/Login.vue';
+import Signup from '../views/Signup.vue';
+import Subscription from '../views/Subscription.vue';
+import MyPayments from '../views/MyPayments.vue';
+import Calendar_dash from '../views/Calendar_dash.vue';
+import News_dash from '../views/News_dash.vue';
 
-import Subscription_admin from '../views/admin/Subscription_admin.vue'
-import Payments_admin from '../views/admin/Payments_admin.vue'
-import Calendar_admin from '../views/admin/Calendar_admin.vue'
-import News_admin from '../views/admin/News_admin.vue'
+import Subscription_admin from '../views/admin/Subscription_admin.vue';
+import Payments_admin from '../views/admin/Payments_admin.vue';
+import Calendar_admin from '../views/admin/Calendar_admin.vue';
+import News_admin from '../views/admin/News_admin.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
     path: '/aboutus',
@@ -33,27 +33,27 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: AboutUs
+    component: AboutUs,
   },
   {
     path: '/admin-login',
     name: 'AdminLogin',
-    component: () => import('../views/AdminLogin.vue')
+    component: () => import('../views/AdminLogin.vue'),
   },
   {
     path: '/contact',
     name: 'Contact',
-    component: Contact
+    component: Contact,
   },
   {
     path: '/calendar',
     name: 'Calendar',
-    component: Calendar
+    component: Calendar,
   },
   {
     path: '/news',
     name: 'News',
-    component: News
+    component: News,
   },
   {
     path: '/cancel',
@@ -63,22 +63,22 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
   },
   {
     path: '/signup',
     name: 'Signup',
-    component: Signup
+    component: Signup,
   },
   {
     path: '/forgot-password',
     name: 'ForgotPassword',
-    component: () => import('../views/ForgotPassword.vue')
+    component: () => import('../views/ForgotPassword.vue'),
   },
   {
     path: '/options',
     name: 'Options',
-    component: () => import('../views/Options.vue')
+    component: () => import('../views/Options.vue'),
   },
   {
     path: '/subscription',
@@ -123,7 +123,7 @@ const routes = [
   {
     path: '/users_admin',
     name: 'Users_admin',
-    component:() => import('../views/admin/Users_admin.vue'),
+    component: () => import('../views/admin/Users_admin.vue'),
     meta: {
       needsAdmin: true,
     },
@@ -167,7 +167,7 @@ const routes = [
     meta: {
       needsAdmin: true,
     },
-  },  
+  },
   {
     path: '/test',
     name: 'test',
@@ -176,30 +176,29 @@ const routes = [
       needsUser: true,
     },
   },
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+  base: import.meta.env.BASE_URL,
+  routes,
+});
 
 router.beforeEach((to, from, next) => {
   console.log(
-    "Bio sam na",
+    'Bio sam na',
     from.name,
-    "idem na",
+    'idem na',
     to.name,
-    "a korisnik je",
+    'a korisnik je',
     store.currentUser
   );
   const AuthUser = store.currentUser !== null;
   // const AdminUser = store.userIsAdmin === true;
-  if (!AuthUser && to.meta.needsUser)
-    next("Login");
+  if (!AuthUser && to.meta.needsUser) next('Login');
   else {
     next();
   }
 });
 
-export default router
+export default router;

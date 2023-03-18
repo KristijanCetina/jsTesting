@@ -4,12 +4,8 @@
 		<div class="row">
 			<div class="col-xs-6 col-md-6">
 				<br /><br />
-				<img
-					style="width: 400px; margin-left: 53px; border-radius: 83px"
-					src="@/assets/logoPC.png"
-					class="img-fluid"
-					alt="Logo"
-				/>
+				<img style="width: 400px; margin-left: 53px; border-radius: 83px" src="/src/assets/logoPC.png"
+					class="img-fluid" alt="Logo" />
 				<div style="margin-left: 27%; margin-top: 10px">
 					<a href="#" class="mx auto fa fa-facebook"></a>&nbsp;
 					<a href="#" class="fa fa-linkedin"></a>&nbsp;
@@ -26,24 +22,14 @@
 						account
 					</p>
 					<label for="emailAdress">Email address</label>
-					<input
-						v-model="email"
-						type="email"
-						class="form-control"
-						id="emailAdress"
-						aria-describedby="emailHelp"
-						placeholder="Enter email"
-					/>
+					<input v-model="email" type="email" class="form-control" id="emailAdress" aria-describedby="emailHelp"
+						placeholder="Enter email" />
 				</div>
 				<div id="errorMessage" class="error text-danger"></div>
 				<div class="error text-danger">{{ errorMessage }}</div>
 
-				<button
-					type="button"
-					@click="sendPasswordResetEmail()"
-					class="btn btn-lg position-absolute"
-					style="margin-left: 29%; background-color: #384f7b; color: #ffffff"
-				>
+				<button type="button" @click="sendPasswordResetEmail()" class="btn btn-lg position-absolute"
+					style="margin-left: 29%; background-color: #384f7b; color: #ffffff">
 					Send Login Link
 				</button>
 			</div>
@@ -52,7 +38,7 @@
 </template>
 
 <script>
-import { firebase } from "@/firebase";
+import { firebase } from "/src/firebase";
 export default {
 	name: "forgot-password",
 	data() {
@@ -86,6 +72,7 @@ export default {
 .btn {
 	transition: box-shadow 0.3s;
 }
+
 .btn:hover {
 	box-shadow: 20px 20px 40px 0px #384f7b;
 }

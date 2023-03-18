@@ -7,12 +7,7 @@
         <div class="limit">
           <iframe
             src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FBelgrade&amp;src=ZnJyYjZpNXNjazRtYTBhajRrNGU2bGJmc29AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=aHIuY3JvYXRpYW4jaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%238E24AA&amp;color=%230B8043"
-            
-            width="110%"
-            height="520"
-            frameborder="0"
-            scrolling="no"
-          ></iframe>
+            width="110%" height="520" frameborder="0" scrolling="no"></iframe>
         </div>
       </div>
     </div>
@@ -20,7 +15,7 @@
 </template>
 
 <script>
-import authorized_navi from "@/components/authorized_navi.vue";
+import authorized_navi from "/src/components/authorized_navi.vue";
 
 export default {
   name: "Subscription",
@@ -36,6 +31,7 @@ export default {
   width: 80%;
   height: 70%;
 }
+
 @media (max-width: 750px) {
   .limit {
     top: 190px;

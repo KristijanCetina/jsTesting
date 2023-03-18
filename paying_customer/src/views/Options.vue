@@ -4,12 +4,8 @@
     <div class="row">
       <div class="col-xs-6 col-md-5 imgH">
         <br /><br />
-        <img
-          style="width: 400px; margin-left: 53px; border-radius: 83px"
-          src="@/assets/logoPC.png"
-          class="img-fluid"
-          alt="Logo"
-        />
+        <img style="width: 400px; margin-left: 53px; border-radius: 83px" src="/src/assets/logoPC.png" class="img-fluid"
+          alt="Logo" />
         <div style="margin-left: 33%; margin-top: 10px">
           <a href="#" class="mx auto fa fa-facebook"></a>&nbsp;
           <a href="#" class="fa fa-linkedin"></a>&nbsp;
@@ -21,15 +17,9 @@
           <h1 class="centerTitle" style="color: #384f7b">PLANS</h1>
           <br />
           <div class="row">
-            <subscriptionCard
-              v-for="subList in subList"
-              :key="subList.id_plan"
-              :suma="subList.suma"
-              :tekst="subList.tekst"
-              :slika="subList.slika"
-              :naziv="subList.naziv"
-              :price="subList.price"
-            ></subscriptionCard>
+            <subscriptionCard v-for="subList in subList" :key="subList.id_plan" :suma="subList.suma"
+              :tekst="subList.tekst" :slika="subList.slika" :naziv="subList.naziv" :price="subList.price">
+            </subscriptionCard>
           </div>
         </div>
       </div>
@@ -38,8 +28,8 @@
 </template>
 
 <script>
-import subscriptionCard from "@/components/subscriptionCard.vue";
-import { db } from "@/firebase";
+import subscriptionCard from "/src/components/subscriptionCard.vue";
+import { db } from "/src/firebase";
 
 export default {
   name: "Subscription",
@@ -84,12 +74,15 @@ export default {
   .imgH {
     display: none;
   }
+
   .blueLine {
     display: none;
   }
+
   .centerTitle {
     margin-top: 20px;
   }
+
   .col-md-7 {
     margin: auto;
     width: 80%;

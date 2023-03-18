@@ -4,12 +4,8 @@
     <div class="row">
       <div class="col-xs-6 col-md-6">
         <br><br>
-        <img
-          style="width: 400px; margin-left: 53px; border-radius: 83px"
-          src="@/assets/logoPC.png"
-          class="img-fluid"
-          alt="Logo"
-        />
+        <img style="width: 400px; margin-left: 53px; border-radius: 83px" src="/src/assets/logoPC.png" class="img-fluid"
+          alt="Logo" />
         <div style="margin-left: 27%; margin-top: 10px">
           <a href="#" class="mx auto fa fa-facebook"></a>&nbsp;
           <a href="#" class="fa fa-linkedin"></a>&nbsp;
@@ -22,83 +18,39 @@
         <form>
           <div class="form-group">
             <label for="emailAdress">Full name</label>
-            <input
-              v-model="fullName"
-              type="text"
-              class="form-control"
-              id="Name"
-              placeholder="Enter your full name"
-              required
-            />
+            <input v-model="fullName" type="text" class="form-control" id="Name" placeholder="Enter your full name"
+              required />
           </div>
           <div class="form-group">
             <label for="emailAdress">Email address</label>
-            <input
-              v-model="email"
-              type="email"
-              class="form-control"
-              id="emailAdress"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-            />
+            <input v-model="email" type="email" class="form-control" id="emailAdress" aria-describedby="emailHelp"
+              placeholder="Enter email" />
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input
-              v-model="password"
-              type="password"
-              class="form-control"
-              id="password"
-              placeholder="Enter Password"
-            />
+            <input v-model="password" type="password" class="form-control" id="password" placeholder="Enter Password" />
           </div>
           <div class="form-group">
             <label for="Re-Password">Repeat Password</label>
-            <input
-              v-model="repeatedPassword"
-              type="password"
-              class="form-control"
-              id="repeatedPassword"
-              placeholder="Enter your password once again"
-            />
+            <input v-model="repeatedPassword" type="password" class="form-control" id="repeatedPassword"
+              placeholder="Enter your password once again" />
           </div>
           <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              name="TermsCheck"
-              id="TermsCheck"
-              v-model="TermsCheck"
-            />
+            <input class="form-check-input" type="checkbox" name="TermsCheck" id="TermsCheck" v-model="TermsCheck" />
             <label class="form-check-label" for="TermsCheck">
               I have read and accept the terms and conditions
             </label>
           </div>
           <br />
           <div>
-            <stripe-checkout
-              ref="checkoutRef"
-              mode="subscription"
-              :pk="publishableKey"
-              :line-items="lineItems"
-              :success-url="successURL"
-              :cancel-url="cancelURL"
-              @loading="(v) => (loading = v)"
-            />
-            <button
-              type="button"
-              @click="signup()"
-              class="btn btn-primary btn-lg btn-block"
-            >
+            <stripe-checkout ref="checkoutRef" mode="subscription" :pk="publishableKey" :line-items="lineItems"
+              :success-url="successURL" :cancel-url="cancelURL" @loading="(v) => (loading = v)" />
+            <button type="button" @click="signup()" class="btn btn-primary btn-lg btn-block">
               Sign In
             </button>
           </div>
           <br />
-          <button
-            type="button"
-            @click="loginWithGoogle()"
-            class="btn btn-secondary btn-lg btn-block"
-          >
+          <button type="button" @click="loginWithGoogle()" class="btn btn-secondary btn-lg btn-block">
             Login with Google
           </button>
         </form>
@@ -111,17 +63,18 @@
 .btn {
   transition: box-shadow 0.3s;
 }
+
 .btn:hover {
   box-shadow: 15px 15px 30px 0px #384f7b;
 }
 </style>
 
 <script>
-import { firebase } from "@/firebase";
+import { firebase } from "/src/firebase";
 import { StripeCheckout } from "@vue-stripe/vue-stripe";
-import store from "@/store";
-import { db } from "@/firebase";
-let marko="";
+import store from "/src/store";
+import { db } from "/src/firebase";
+let marko = "";
 export default {
   name: "Signup",
   components: {
@@ -192,7 +145,7 @@ export default {
                 .auth()
                 .signOut()
                 .then(() => {
-                    this.$alert("Potrebno je verificirati e-mail prije korištenja aplikacije pomoću poslanog linka.");
+                  this.$alert("Potrebno je verificirati e-mail prije korištenja aplikacije pomoću poslanog linka.");
                 });
             }
           })

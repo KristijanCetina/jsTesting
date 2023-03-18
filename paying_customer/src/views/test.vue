@@ -1,22 +1,15 @@
 <template>
   <div>
-    <stripe-checkout
-      ref="checkoutRef"
-      mode="subscription"
-      :pk="publishableKey"
-      :line-items="lineItems"
-      :success-url="successURL"
-      :cancel-url="cancelURL"
-      @loading="v => (loading = v)"
-    />
+    <stripe-checkout ref="checkoutRef" mode="subscription" :pk="publishableKey" :line-items="lineItems"
+      :success-url="successURL" :cancel-url="cancelURL" @loading="v => (loading = v)" />
     <button @click="submit">Subscribe!</button>
   </div>
 </template>
 
 <script>
 import { StripeCheckout } from "@vue-stripe/vue-stripe";
-import store from "@/store";
-import { db } from "@/firebase";
+import store from "/src/store";
+import { db } from "/src/firebase";
 
 export default {
   name: "test",
