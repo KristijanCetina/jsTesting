@@ -17,7 +17,7 @@ Mentor: [doc. dr. sc. Nikola Tanković](https://ntankovic.unipu.hr/)
 
 ## Kratki opis funkcionalnosti
 
-Core svrha aplikacije je da omogući …
+Core svrha aplikacije je da omogući … .
 
 ## Bugs & Feature request
 
