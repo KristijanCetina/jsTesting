@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import authorized_navi from "/src/components/authorized_navi.vue";
+import authorized_navi from "@/components/authorized_navi.vue";
 
 export default {
   name: "Subscription",

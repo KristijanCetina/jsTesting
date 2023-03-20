@@ -74,9 +74,9 @@
 
 
 <script>
-import admin_navi from "/src/components/admin_navi.vue";
-import subscriptionCard from "/src/components/subscriptionCard.vue";
-import { db } from "/src/firebase";
+import admin_navi from "@/components/admin_navi.vue";
+import subscriptionCard from "@/components/subscriptionCard.vue";
+import { db } from "@/firebase";
 
 export default {
   name: "SubsriptionAdmin",

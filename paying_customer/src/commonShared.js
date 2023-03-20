@@ -1,5 +1,5 @@
-import { db } from '/src/firebase';
-import store from '/src/store';
+import { db } from '@/firebase';
+import store from '@/store';
 
 export async function fetchNewsData() {
   console.log('Evo mene moji ljudi, došao sam vam pročitati obavijesti');

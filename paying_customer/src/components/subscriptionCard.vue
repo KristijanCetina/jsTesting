@@ -22,8 +22,8 @@
 
 
 <script>
-import store from "/src/store";
-import { db } from "/src/firebase";
+import store from "@/store";
+import { db } from "@/firebase";
 
 export default {
   data: function () {

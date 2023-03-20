@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import authorized_navi from "/src/components/authorized_navi.vue";
-import newsCard from "/src/components/newsCard";
-import { fetchNewsData } from "/src/commonShared";
-import store from "/src/store";
+import authorized_navi from "@/components/authorized_navi.vue";
+import newsCard from "@/components/newsCard";
+import { fetchNewsData } from "@/commonShared";
+import store from "@/store";
 
 export default {
   name: "news_dash",

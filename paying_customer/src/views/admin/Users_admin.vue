@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import admin_navi from "/src/components/admin_navi.vue";
-import { db } from "/src/firebase";
+import admin_navi from "@/components/admin_navi.vue";
+import { db } from "@/firebase";
 import moment from "moment";
-// import subs_info from "/src/components/subs_info.vue"; //u nekom trenutku za prikaz korisnika ili pretplata
+// import subs_info from "@/components/subs_info.vue"; //u nekom trenutku za prikaz korisnika ili pretplata
 
 export default {
   name: "UsersAdmin",

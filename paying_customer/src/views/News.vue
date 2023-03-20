@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-5 imgH">
           <br /><br />
-          <img style="width: 400px; margin-left: 53px; border-radius: 83px" src="/src/assets/logoPC.png" class="img-fluid"
+          <img style="width: 400px; margin-left: 53px; border-radius: 83px" src="@/assets/logoPC.png" class="img-fluid"
             alt="Logo" />
           <div style="margin-left: 32%; margin-top: 10px">
             <a href="#" class="mx auto fa fa-facebook"></a>&nbsp;
@@ -32,9 +32,9 @@
 </template>
 
 <script>
-import newsCard from "/src/components/newsCard";
-import { fetchNewsData } from "/src/commonShared";
-import store from "/src/store";
+import newsCard from "@/components/newsCard";
+import { fetchNewsData } from "@/commonShared";
+import store from "@/store";
 
 export default {
   name: "app",

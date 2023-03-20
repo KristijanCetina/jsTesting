@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import admin_navi from "/src/components/admin_navi.vue";
+import admin_navi from "@/components/admin_navi.vue";
 
 
 export default {

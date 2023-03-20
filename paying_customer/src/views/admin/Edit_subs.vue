@@ -43,9 +43,9 @@
 </template>
 
 <script>
-import admin_navi from "/src/components/admin_navi.vue";
-import { db } from "/src/firebase";
-import store from "/src/store";
+import admin_navi from "@/components/admin_navi.vue";
+import { db } from "@/firebase";
+import store from "@/store";
 
 export default {
   name: "EditSubs",

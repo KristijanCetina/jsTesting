@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-xs-6 col-md-6 imgH">
         <br><br>
-        <img style="width: 400px; margin-left: 53px; border-radius: 83px" src="/src/assets/logoPC.png" class="img-fluid"
+        <img style="width: 400px; margin-left: 53px; border-radius: 83px" src="@/assets/logoPC.png" class="img-fluid"
           alt="Logo" />
         <div class="socialM" style="margin-left: 27%; margin-top: 10px">
           <a href="#" class="mx auto fa fa-facebook"></a>&nbsp;
@@ -83,8 +83,8 @@
 </style>
 
 <script>
-import store from "/src/store";
-import { firebase } from "/src/firebase";
+import store from "@/store";
+import { firebase } from "@/firebase";
 export default {
   name: "login",
   data() {

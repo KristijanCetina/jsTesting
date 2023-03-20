@@ -2,7 +2,7 @@
   <div>
     <div>
       <b-navbar toggleable="lg" class="naviStyle" type="dark">
-        <b-navbar-brand to="/"><img margin-left="30%" height="113px" width="113px" src="/src/assets/logo_transparent.png"
+        <b-navbar-brand to="/"><img margin-left="30%" height="113px" width="113px" src="@/assets/logo_transparent.png"
             alt="Logo" /></b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import store from "/src/store";
-import { firebase } from "/src/firebase";
-import router from "/src/router";
-// import HelloWorld from "/src/components/HelloWorld.vue";
+import store from "@/store";
+import { firebase } from "@/firebase";
+import router from "@/router";
+// import HelloWorld from "@/components/HelloWorld.vue";
 
 const admins = [
   "iOV0SSPc3Pd6ed5BuNsHT6jeSIp2", //Kristijan

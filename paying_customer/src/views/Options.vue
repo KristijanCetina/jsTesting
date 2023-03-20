@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-xs-6 col-md-5 imgH">
         <br /><br />
-        <img style="width: 400px; margin-left: 53px; border-radius: 83px" src="/src/assets/logoPC.png" class="img-fluid"
+        <img style="width: 400px; margin-left: 53px; border-radius: 83px" src="@/assets/logoPC.png" class="img-fluid"
           alt="Logo" />
         <div style="margin-left: 33%; margin-top: 10px">
           <a href="#" class="mx auto fa fa-facebook"></a>&nbsp;
@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import subscriptionCard from "/src/components/subscriptionCard.vue";
-import { db } from "/src/firebase";
+import subscriptionCard from "@/components/subscriptionCard.vue";
+import { db } from "@/firebase";
 
 export default {
   name: "Subscription",
