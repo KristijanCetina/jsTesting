@@ -9,7 +9,8 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
     "cy-test": "cypress open",
     "cy-run": "cypress run",
-    "pw-run": "playwright test"
+    "pw-run": "playwright test",
+    "clean": "rm -rf playwright-report/ cypress/screenshots/"
   },
   "dependencies": {
     "@vue-stripe/vue-stripe": "^4.0.3",
