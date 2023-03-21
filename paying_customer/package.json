@@ -30,7 +30,7 @@
     "@vitejs/plugin-vue": "^1.10.2",
     "eslint": "^8.36.0",
     "eslint-plugin-vue": "^9.9.0",
-    "playwright": "^1.23.0",
+    "playwright": "^1.31.2",
     "sass": "^1.26.5",
     "vite": "^2.5.4",
     "vite-plugin-vue2": "2.0.3"
