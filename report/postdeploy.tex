@@ -1,0 +1,22 @@
+\chapter{Testiranje nakon nadogradnje na novu verziju}\label{postdeploy}
+
+Jedna od čestih aktivnosti svakog razvojnog tima je nadogradnja programa na novu verziju.
+U poduzeću je praksa da se pušta u produkcijski rad nova verzija programa jednom mjesečno za glavnog klijenta. 
+Kako klijent ima postrojenja na 6 kontinenta uz dodatna postrojenja koja se nalaze u međunarodnim vodama svih svjetskih oceana proces nadogreadnje je podijeljen po regijama.
+To su Americas (Sjeverja i Južna Amerika), EU (Europa i Bliski istok + Afrika) te AP (Azija i Pacifik).
+Svaka od regije ima više od 15 postrojenja koja koriste zasebne servere što znači da se nadogradnja vrši na više od 15 lokacija po regiji.
+Već iz ovoga je izvjesno kako je to puno potencijalnih problema i zastoja koja se mogu pojaviti te treba osigurati da je proces nadogranje čim je više optimalan bez nepotrebnih zastoja i prekida u radu.
+
+\section{Postojeći način testiranja}
+Do uvođenja automstkih testova standardna procedura se sastojala od toga da AM regiju detaljno testira 3-4 testera (inženjera za kontrolu kvalitete - QA) koji bi svaki od njih provjerio 3 do 4 postrojenja (site).
+U prosjeku, za provjeriti jedno postrojenje je trebalo 20 do 30 minuta kako bi se osiguralo da su sve promjene aplicirane ispravno te da nisu izazvale neželjene nuspojave i prestanak rada postojećih funkcionalnosti.
+Naravno, zbog velikog broja funkcionalnosti te nedostatka vremena da se svaka od njih ručno provjeri bili smo vrlo izbirljivi što će se testirati s obzirom na kritičnost neke funkcionalnosti.
+Cijeli taj proces bi trajao oko 1:30 do 2 sata po članu test tima, a sve ukupno bi se trošak procijenio na 6-7 radnih čovjek-sati.
+Ako to pomnoćimo s cijenom rada lako se dolazi do ukupnog troška testiranja nakon nadogradnje.
+
+Nakon što se verificiralo da je novi paket programa ispravan, te ako klijenti nisu prijavili ozbiljne probleme koji ih spriječavaju u radu putem sustava za prijavu kvara (\emph{showstopper}), moglo se pristupiti nadogradnji sljedeće regije Asia Pacific.
+
+Tada bi se ponovila opet ista procedura, uz eventualne izmjene da bi bio 1 član testinog tima manje kako bi se smanjili prekovremeni sati jer nije bilo potrebe za provjerom svih funkcionalnosti, već je bilo prihvatljivo da se provjeri i reducirani set za koji bi trebalo maksimalno 20 minuta po postrojenju što bi ukupno iznosilo oko 5 čovjek-sati po regiji.
+Iako je to manji trošak, i dalje je značajni trošak. 
+Čim više što se je termin za radove na AP regiji djelomično izvan rednovnog radnog vremena poduzeća tako da treba uračanti i trošak prekovremenog rada.
+To je posebno izraženo za EU regiju kod koje pak termin za radove je u potpunosti izvan redovnog radnog vremena pa je u tom slučaju sav rad je prekovremeni rad.
