@@ -37,3 +37,7 @@ report/*.out
 # cypress specific files
 paying_customer/cypress/videos/
 paying_customer/cypress/screenshots/
+
+/playwright/.cache/
+/playwright-report/
+*.env
