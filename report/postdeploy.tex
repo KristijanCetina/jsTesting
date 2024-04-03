@@ -19,4 +19,34 @@ Nakon što se verificiralo da je novi paket programa ispravan, te ako klijenti n
 Tada bi se ponovila opet ista procedura, uz eventualne izmjene da bi bio 1 član testinog tima manje kako bi se smanjili prekovremeni sati jer nije bilo potrebe za provjerom svih funkcionalnosti, već je bilo prihvatljivo da se provjeri i reducirani set za koji bi trebalo maksimalno 20 minuta po postrojenju što bi ukupno iznosilo oko 5 čovjek-sati po regiji.
 Iako je to manji trošak, i dalje je značajni trošak. 
 Čim više što se je termin za radove na AP regiji djelomično izvan rednovnog radnog vremena poduzeća tako da treba uračanti i trošak prekovremenog rada.
-To je posebno izraženo za EU regiju kod koje pak termin za radove je u potpunosti izvan redovnog radnog vremena pa je u tom slučaju sav rad je prekovremeni rad.
+To je posebno izraženo za EU regiju kod koje pak termin za radove je u potpunosti izvan redovnog radnog vremena pa je u tom slučaju sav rad je prekovremeni rad.  
+
+Uz sve navedeno dodatan problem ručnog testiranja je točnost i preciznost istog.
+Isto tako je normalno za očekivati kako će različiti testeri odraditi posao na različitoj razini kvalitete jer ipak nisu strojevi.
+Zato smo odlučili taj posao prepustiti strojevima.
+Barem u mjeri koliko je to moguće.
+
+Iz gore navedenog je razvidno kako je bilo potrebno poboljšati proces testiranja nadogradnje primarno iz razloga povećanja kvalitete posla.
+
+\section{Automatsko tesiranje procesa nadogradnje}
+
+Glavni cilj prelaska na autimatski način testiranja je bio povećati preciznost testova i osigurati da se ne izostavi niti jedan korak koji se provjeravao pri ručnom testiranju.
+
+Drugi cilj je bio smanjti vrijeme potrebano za testiranje sa prethodnih 30 minuta na ispod 5 minuta.
+
+Dodatan cilj je bio omogućiti daljni rast broja klijenata i instalacija koja se mogu nadograditi istovremeno, a bez da se mora uložiti značajno više vremena.
+Idealno smo htjeli postići $\mathcal{O}(\log n)$ rast potrošenog vremena za svakog novog klijenta.
+
+Nakon što je provedena nadogradnja s automatskim tesiranjem potvrđeno je da su glavni ciljevi ostvareni te da će se nastaviti s implementacijom primjenjene tehnologije i za ostale potrebe.
+Konkretno, vrijeme testa po postrojenju je iznosilo od 2-4 minuta, ovisno o performansama servera i količini podataka koje klijent ima za razne izvještaje.
+Na slici \ref{img:fullTestPass} je prikazan izvještaj koji Playwright generira nakon završenog testiranja.
+\begin{figure}[!h]\begin{center}
+    \includegraphics[width=0.8\textwidth]{"img/fullTestPass"}
+    \caption{Izvještaj nakon završenog automatskog tesiranja}\label{img:fullTestPass}
+    \end{center}\end{figure}
+
+    
+Niti jedan test nije pokazivao znakove problema, ako ih zaista nije bilo (\emph{false-negative} testovi).
+Svi uočeni problemi nakon isporuke nove verzije su bili rješeni u rekordnom roku, a tome je pridonjelo vrlo kratko vrijeme do otkrivanja problema.
+
+Kao dodatan benefit je primjećeno da se sada testeri mogu više fokusirati na specifične rubne slučajeve koje je potrebano verificirati te na taj način dodatno smanjiti broj prijavljenih nedostataka od strane korisnika te poslijedično povisiti kvalitetu isporučenog proizvoda.
