@@ -1,0 +1,13 @@
+node_modules/
+test-results/
+playwright-report/
+allure-report/
+allure-results/
+.DS_Store
+/playwright/.cache/
+TestResults*
+/test-results/*
+/reports/
+/blob-report/
+*copy.*
+*tmp.*

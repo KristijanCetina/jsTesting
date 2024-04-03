@@ -1,0 +1,13 @@
+{
+	"IMS_FCM_LOCAL": {
+		"PEI": true,
+		"RCM": true,
+		"CIVIL": false,
+		"PLSS": true,
+		"SIF": true,
+		"FCM": true,
+		"CUI": false,
+		"PIService": true,
+		"url": "https://fcm-latest.apps.cenosco.local/"
+	}
+}
