@@ -1,4 +1,4 @@
-# Testiranje klijentskih komponenti web aplikacija pomoću alata Playwright i Cypress
+# Testiranje klijentskih komponenti web aplikacija pomoću alata Playwright
 
 [![GitHub license](https://img.shields.io/github/license/srggrs/assign-one-project-github-action.svg)][license]
 
@@ -17,7 +17,7 @@ Mentor: [doc. dr. sc. Nikola Tanković](https://ntankovic.unipu.hr/)
 
 ## Kratki opis funkcionalnosti
 
-Core svrha aplikacije je da omogući … .
+Core svrha aplikacije je da omogući brže, jednostavnije i preciznije testiranje klijentskih web komponenti.
 
 ## Bugs & Feature request
 
