@@ -19,8 +19,71 @@ Playwright se može koristiti za:
 \end{itemize}
     
 \section{Opis i pregled paketa}
+Sistemski zahtjevi za pokretanje Playwrighta su: \footnote{\url{https://playwright.dev/docs/intro\#system-requirements}}
+\begin{itemize}
+    \item Node.js 18 ili noviji
+    \item Windows 10 ili noviji, Windows Server 2016 ili noviji ili Windows Subsystem for Linux (WSL),
+    \item MacOS 12 Monterey ili noviji
+    \item Debian 11, Debian 12, Ubuntu 20.04 ili Ubuntu 22.04, sa x86-64 ili arm64 arhitekturom.
+\end{itemize}
+
+Omogućava testiranje na Chrom Chromium, Firefox i WebKit engenima \footnote{\url{https://www.npmjs.com/package/playwright\#documentation--api-reference}} koji se koriste u modernim web preglednicima.
+
+Paket omogućava izvršavanje testova u UI načinu rada kao i u \emph{headless} načinu rada prilikom kojeg se ne vide koraci kako se kreće po web stranici nego se na kraju testa dobije izvještaj o uspješnosti testiranja.
+To je vrlo koristno kada se koriste automatski načini objavljivanja koda koji onda može izvršiti testiranje prilikom svake promjene koda.
 
 \section{Instalacija}
+
+Najjednostavniji način za instalaciju Playwright paketa je putem npm alata koristeći naredbu
+\begin{verbatim}
+npm init playwright@latest
+\end{verbatim}
+te će to instalirati paket i pokrenuti postupak inicijalizacije paketa.
+Osim \texttt{npm}, može se koristiti i \texttt{yarn} ili \texttt{pnpm}, ovisno o osobnim preferencijama.
+Tokom inicijalizacije može se birati nekoliko postavki:
+\begin{itemize}
+    \item Odabrati TypeScript ili JavaScript (standardno je TypeScript)
+    \item Odabrati ime direktorija koji će sadržavati testove (standardno je 'test' ili 'e2e' - end to end, ako 'test' već postoji)
+    \item Dodati GitHub Action workflow za automatsko izvršavanje testova prilikom objave izvornog koda na GitHub servisu
+    \item Instalirati potrebne preglednike koji će se koristiti za testiranje
+    
+\end{itemize}
+
+Playwright će nakon toga kreirati potrebne direktorije i datoteke za konfiguraciju kao i primjer jednog testa za lakši početak
+\begin{verbatim}
+playwright.config.ts
+package.json
+package-lock.json
+tests/
+  example.spec.ts
+tests-examples/
+  demo-todo-app.spec.ts
+\end{verbatim}
+
+Primjetimo kako je uvrijeđena norma da se datoteke koje sadrže testove imaju \texttt{.spec} ispred oznake tipa datoteke uz zadržavanje istog imena. Čak ih i razni editori koda označavaju s drugim ikonama kako bi bili vizualno lakše raspoznatljivi od datoteka koje sadrže izvorni komponenti kao što je vidljivo na slici \ref{img:filesLogos}.
+\begin{figure}[!h]\begin{center}
+    \includegraphics[width=1\textwidth]{"img/filesLogos"}
+    \caption{Izgled ikona sa izvornim kodom i testom za komponentu}\label{img:filesLogos}
+\end{center}\end{figure}
+
+Ukoliko se inicijalizacija vrši unutar već postojećeg projekta, što je najčešće i slučaj, konfiguracija zavisnih paketa će biti dodana u postojeću \texttt{package.json} datoteku.
+
+\begin{figure}[!h]\begin{center}
+    \includegraphics[width=1\textwidth]{"img/pwInit"}
+    \caption{Ekran nakon uspješne instalacije i inicijalizacije Playwright paketa}\label{img:pwInit}
+\end{center}\end{figure}
+
+Na slici \ref{img:pwInit} vidimo kako izgleda uspješna instalacija i inicijalizacija Playwright paketa.
+
+\texttt{playwright.config.ts} datoteka sadrži konfiguracije testova kao npr 
+\begin{itemize}
+    \item koji se preglednik koristi, 
+    \item koja je veličina prozora preglednika, 
+    \item koji se mobilni uređaj koristi u slučaju tesitiranja na mobilnim preglednicima,
+    \item standardno očekivano vrijeme ispunjenja testa (timeout)
+\end{itemize}
+te mnogi drugi preddefinirane i prilagođene opcije konfiguracije.
+
 
 \section{Osnovni test}
 
