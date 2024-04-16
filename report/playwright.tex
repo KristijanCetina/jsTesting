@@ -27,7 +27,7 @@ Sistemski zahtjevi za pokretanje Playwrighta su: \footnote{\url{https://playwrig
     \item Debian 11, Debian 12, Ubuntu 20.04 ili Ubuntu 22.04, sa x86-64 ili arm64 arhitekturom.
 \end{itemize}
 
-Omogućava testiranje na Chrom Chromium, Firefox i WebKit engenima \footnote{\url{https://www.npmjs.com/package/playwright\#documentation--api-reference}} koji se koriste u modernim web preglednicima.
+Omogućava testiranje na Chromium, Firefox i WebKit engenima \footnote{\url{https://www.npmjs.com/package/playwright\#documentation--api-reference}} koji se koriste u modernim web preglednicima.
 
 Paket omogućava izvršavanje testova u UI načinu rada kao i u \emph{headless} načinu rada prilikom kojeg se ne vide koraci kako se kreće po web stranici nego se na kraju testa dobije izvještaj o uspješnosti testiranja.
 To je vrlo koristno kada se koriste automatski načini objavljivanja koda koji onda može izvršiti testiranje prilikom svake promjene koda.
@@ -68,13 +68,6 @@ Primjetimo kako je uvrijeđena norma da se datoteke koje sadrže testove imaju \
 
 Ukoliko se inicijalizacija vrši unutar već postojećeg projekta, što je najčešće i slučaj, konfiguracija zavisnih paketa će biti dodana u postojeću \texttt{package.json} datoteku.
 
-\begin{figure}[!h]\begin{center}
-    \includegraphics[width=1\textwidth]{"img/pwInit"}
-    \caption{Ekran nakon uspješne instalacije i inicijalizacije Playwright paketa}\label{img:pwInit}
-\end{center}\end{figure}
-
-Na slici \ref{img:pwInit} vidimo kako izgleda uspješna instalacija i inicijalizacija Playwright paketa.
-
 \texttt{playwright.config.ts} datoteka sadrži konfiguracije testova kao npr 
 \begin{itemize}
     \item koji se preglednik koristi, 
@@ -84,7 +77,37 @@ Na slici \ref{img:pwInit} vidimo kako izgleda uspješna instalacija i inicijaliz
 \end{itemize}
 te mnogi drugi preddefinirane i prilagođene opcije konfiguracije.
 
+Na slici \ref{img:pwInit} vidimo kako izgleda uspješna instalacija i inicijalizacija Playwright paketa.
+\begin{figure}[!h]\begin{center}
+    \includegraphics[width=1\textwidth]{"img/pwInit"}
+    \caption{Ekran nakon uspješne instalacije i inicijalizacije Playwright paketa}\label{img:pwInit}
+\end{center}\end{figure}
+\section{Generiranje testova}
+Playwright ima mogućnost generiranja testova tako što snima klikanje miša korisnika te to prevodi u kod koji se može izvršavati.
+To je vrlo jednostavan i praktičan način da čak i totalni početnici mogu krenuti s izradom automatskih testova, a kasnije s iskustvom se ti testovi mogu rafinirati i poboljšavati.
+Često je i tako generirai kod dovoljno dobar za upotrebu kod jednostvanijih slučajeva, a zasigurno je dobar za brzo sastavljanje testova da se izbjegne često dosatno tipkanje djelova koda koji se neće kasnije ponovno upotrebljavati.
+To uklanja potrebu za pisanje prilagođenih funkcija kao što radimo prilikom izrade projekta koji planiramo dugo vremena održavati i na taj način se može uštediti dosta vremena.
+Iako, treba biti oprezan s time jer često ušteda vremena na početku vodi do puno utrošenog vremena kasnije, ali to je tema koja je izvan okvira ovog rada.
+\section{Pokretanje alata za generiranje testova}
 
-\section{Osnovni test}
+Alat za generiranje testova se pokreće putem \texttt{codegen} naredbe koja prima argument URL web stranice za koju se želi generirati testovi.
+URL nije obavezan i može se pokrenuti alat bez njega, a zatim dodati URL izravno u prozoru preglednika.
+
+Pokazati ćemo to na promjeru koji se nalazi u službenoj dokumentaciji \footnote{\url{https://playwright.dev/docs/codegen-intro\#running-codegen}} koristeći naredbu
+\begin{verbatim}
+npx playwright codegen demo.playwright.dev/todomvc
+\end{verbatim}
+\begin{figure}[!h]\begin{center}
+    \includegraphics[width=1\textwidth]{"img/codegenInterface"}
+    \caption{Izgled sučelja za generiranje testova}\label{img:pwCodeGen}
+\end{center}\end{figure}
+
+Na slici \ref{img:pwCodeGen} je prikazan izgled sučelja za generiranje testova koji se sastoji od nekoliko djelova:
+\begin{itemize}
+    \item prozor preglednika unutar kojeg se izvršava aplikacija - označen s crvenim okvirom (gore)
+    \item prozor unutar kojeg se prikazuje generirani kod - označen s žutim okvirom (dolje)
+    \item Lokator koji će Playwright koristiti se prikazuje kada se stavi miš preko elementa - označen sa zelenim okvirom (unutar prozora preglednika)
+\end{itemize}
+
 
 \section{Kontinuirana integracija - CI}
