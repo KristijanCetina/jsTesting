@@ -172,3 +172,61 @@ async function login(page: Page) {
     console.log('Login Check Successful');
 }
 \end{verbatim}
+
+\section{Bazni objektni model stranice}
+
+U nastavku slijedi objašanjenje definicije klase TypeScript za \texttt{BaseMainOptions} koja se koristi za pristupanje elementima na stranici.
+
+Definiranje i korištenje zasebnih klasa poboljšava mogućnost ponovne upotrebe koda kao i njegovo održavanje što za posljedicu ima lakše pisanje automatiziranih testova.
+
+\subsection{Svojstva klase}
+\begin{verbatim}
+export class BaseMainOptions {
+    readonly page: Page
+    readonly buttonActionItem: Locator
+    readonly buttonMyAccount: Locator
+    readonly notificationText: Locator
+    readonly notificationClose: Locator
+\end{verbatim}
+Klasa \texttt{BaseMainOptions} sadrži svojstva koja predstavljaju različite elemente na web stranici. Ova su svojstva inicijalizirana kao samo za čitanje, što znači da su postavljena jednom i da se nakon toga ne mogu mijenjati. Svojstva uključuju:
+\begin{itemize}
+    \item page: Instanca klase Page koja predstavlja web stranicu.
+    \item buttonActionItem: Lokator za "Action Items" gumb.
+    \item buttonMyAccount: Lokator za "My Account" gumb.
+    \item notificationText: Lokator za tekst obavijesti.
+    \item notificationClose: Lokator za gumb za zatvaranje obavijesti
+\end{itemize}
+
+\subsection{Konstruktor}
+\begin{verbatim}
+constructor(page: Page) {
+    this.page = page
+    this.buttonActionItem = page.locator("//button[@title='Action Items']")
+    this.buttonMyAccount = page.locator("//span[.='My Account']")
+    this.notificationText = page.locator('p[class="CenNotificationText"]')
+    this.notificationClose = page.locator('//div[@class="CenNotificationClose"]').first()
+}
+\end{verbatim}
+Konstruktor inicijalizira klasu \texttt{BaseMainOptions} instancom \texttt{Page} te dodjeljuje lokatore za različite elemente njihovim odgovarajućim svojstvima, koristeći XPath i CSS selektore.
+
+\subsection{Metode}
+\begin{verbatim}
+async checkNotification(notification: string) {
+    await expect(this.notificationText).toBeVisible()
+    const content = await this.notificationText.textContent()
+    expect(content).toBe(notification)
+}
+\end{verbatim}
+Ova asinkrona metoda provjerava je li obavijest s određenim tekstom vidljiva na stranici. Čeka da element obavijesti bude vidljiv te provjerava njegov tekstualni sadržaj i potvrđuje da sadržaj odgovara očekivanom tekstu.
+
+\begin{verbatim}
+async closeNotification() {
+    await this.page.waitForTimeout(200)
+    if (await this.notificationClose.isVisible()) {
+        await this.notificationClose.click()
+    }
+}
+\end{verbatim}
+Ova metoda čeka kratko razdoblje (200 milisekundi), a zatim provjerava je li gumb za zatvaranje obavijesti vidljiv. Ako jest, metoda klikne gumb za zatvaranje kako bi zatvorili pop-up s obavijesti.
+
+Ostale metode su definirane na sličan način.
