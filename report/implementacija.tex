@@ -1,0 +1,174 @@
+\chapter{Implementacija u produkciji na stvarnom proizvodu}\label{ch:implementacija}
+
+Jedan od razloga za proučavanje ove teme je bio rješavanje stvarnog problema opisanog u \ref{current_postdeploy}.
+U nastavku ovog poglavlja biti će opisan izvorni kod koji se koristio za provedbu automatskog testiranja.
+
+Prikazana skripta demonstrira organizirani pristup automatizaciji testiranja web aplikacija pomoću Playwrighta. Iskorištavanjem POM-ova i modularnih funkcija, osigurava da su testovi čitljivi i održavani. Svaka stranica iz JSON konfiguracije prolazi slijed provjera za provjeru funkcionalnosti, uz fleksibilnost da se prema potrebi jednostavno omogući ili onemogući određeni testni korak.
+
+\section{Uvođenje i inicijalizacija}
+Skripta započinje serijom uvoženja pomoćnih komponenti potrebnih za testiranje
+\begin{verbatim}
+import { test, expect, Page } from '@playwright/test';
+import { MainGridToolbarPage } from '../pom/MainGridToolbar';
+import { MainNavTabsPage } from '../pom/MainNavTabs';
+import { FLOCForm } from '../pom/FLOCForm';
+import { LoginPage } from '../pom/Login';
+import { DevToolsPage } from '../pom/DevTools';
+import { DashboardPage } from '../pom/Dashboard';
+import { MainGridPage } from '../pom/MainGrid';
+import { ReportsLightboxPage } from '../pom/ReportsLightbox';
+import { FeedbackPage } from '../pom/Feedback';
+import { CorrosionLoopPage } from '../pom/CorrosionLoop';
+import { ModulePickerPage } from '../pom/ModulePicker';
+import { BaseMainOptions } from '../pom/BaseMain';
+import { MyAccount } from '../pom/MyAccount';
+import { MainGridFiltersPage } from '../pom/MainGridFilters';
+import sites from '../data/ListOfSites.json';
+import { format } from 'date-fns/format';
+import { enGB } from 'date-fns/locale';
+\end{verbatim}
+
+Navedene komande uvoze djelove Playwright biblioteke potrebne za učitavanje stranice kao i provjeru dobivenih rezultata s očekivanim vrijednostima.
+Nadalje, cijeli proizvod je podijeljen u manje komponente koje se dijele unutar programa te su isti definirani u objektnim modelima stranica (POM - page object module u nastavku teksta)
+Podaci o stranicama koje treba testirati su učitani putem JSON formata te također se koristi \texttt{date-fns} biblioteka za manipulaciju i formatiranje datuma.
+
+\section{Deklaracija varijabli}
+Sljedeće varijable su deklarirane za spremanje instanci POM klasa
+
+\begin{verbatim}
+let loginPage: LoginPage;
+let modulePickerPage: ModulePickerPage;
+let mainGridPage: MainGridPage;
+let mainGridToolbarPage: MainGridToolbarPage;
+let baseMain: BaseMainOptions;
+let mainNavTabsPage: MainNavTabsPage;
+let devTools: DevToolsPage;
+let reportsLightboxPage: ReportsLightboxPage;
+let myAccount: MyAccount;
+\end{verbatim}
+
+\section{Konfiguracija testova}
+Globalna konfiguracija testova je definirana u \texttt{/playwright.config.ts} datoteci, ali je moguće za svaki test definirati dodatne parametre ili nadvladati globalne kada je to potrebno.
+Za ovaj test je dodatno definirano da želimo da se izvršava paralelnom načinu izvođenja kako bi se poboljšale performase s obzirom da nema potrebe da se čeka završetak jednog testa da bi se pokrenuo naredni.
+To je jednostavno napravljeno sljedećom linijom koda:
+\begin{verbatim}
+test.describe.configure({ mode: 'parallel' });
+\end{verbatim}
+
+\section{Glavni test}
+Glavna petlja koda koji se izvršava za svakog klijenta (site) je:
+
+\begin{verbatim}
+    for (const site in sites) {
+    const currentDate = format(new Date(), 'd MMM yyyy, HH:mm:ss', {
+        locale: enGB,
+    });
+    const siteObj = sites[site];
+
+    test(site, async ({ page }) => {
+        const url: string = siteObj.url;
+        // Instantiate POM classes with the current page instance
+        loginPage = new LoginPage(page);
+        modulePickerPage = new ModulePickerPage(page);
+        mainGridPage = new MainGridPage(page);
+        mainGridToolbarPage = new MainGridToolbarPage(page);
+        baseMain = new BaseMainOptions(page);
+        mainNavTabsPage = new MainNavTabsPage(page);
+        devTools = new DevToolsPage(page);
+        reportsLightboxPage = new ReportsLightboxPage(page);
+        myAccount = new MyAccount(page);
+
+        // Perform login and initial setup
+        await test.step('Login Check', async () => {
+            await checkConsoleLog(page, site);
+            await page.goto(url + '#fcmfloc');
+            await login(page);
+            await mainGridToolbarPage.clearAllFilters();
+            await mainGridToolbarPage.clearScoping();
+        });
+
+		await test.step('Feedback Check', async () => {
+			const feedbackPage = new FeedbackPage(page);
+			await feedbackPage.sendFeedback();
+		});
+
+		await test.step('HD Tool Check', async () => {
+			await devTools.checkHDTool(url);
+		});
+
+		await test.step('Reset Survey Provider', async () => {
+			// Must be called immediately after HD Tool Check,
+			// until the page refresh is fixed.
+			await devTools.resetSurveyProvider();
+		});
+
+		if (siteObj.PEI == true) {
+			await test.step('Go To PEI', async () => {
+				await modulePickerPage.goToPEI(url);
+			});
+
+			await test.step('PEI Main Grids Check', async () => {
+				await baseMain.goToMyAccount();
+				await myAccount.checkPEIMainGrids();
+			});
+
+			await test.step('Checklist Findings Check', async () => {
+				if (siteObj.CIVIL == true) {
+					await modulePickerPage.selectCivil();
+				}
+				await checkChecklistFindings(page);
+			});
+
+			await test.step('PI Service Check', async () => {
+				if (siteObj.PIService == true) {
+					await checkPIService(page);
+				}
+			});
+
+			await test.step('Dynamic Forms Check', async () => {
+				await checkDynamicForms(page);
+			});
+
+        if (siteObj.FCM == true) {
+            await test.step('Go To FCM', async () => {
+                await modulePickerPage.goToFCM(url);
+            });
+
+            await test.step('FCM Main Grids Check', async () => {
+                await baseMain.goToMyAccount();
+                await myAccount.checkFCMMainGrids();
+            });
+        }
+
+        if (siteObj.MobUrl) {
+            await test.step('Mobile Site Check', async () => {
+                await page.goto(siteObj.MobUrl + '#peifloc');
+                await login(page);
+                console.log('Mobile Site Check Successful');
+            });
+        } else {
+            console.log(site + " doesn't have a mobile site url");
+        }
+    });
+}
+\end{verbatim}
+
+Unutar petlje se provjerava niz krucijalnih funkcionalnosti koji moraju raditi nakon svakog ažuriranja, a praksa je pokazala da ponekad, iz raznih razloga, to nije slučaj.
+Primarno su to logiranje u program, navigacija na specifične module, provjera logging alata i resetiranje analitičkih alata.
+Svaki korak testa je definiran kao asinkroni \texttt{await test.step} koji objedinjuje jedan korak.
+
+\section{Pomoćne funkcije}
+
+Više asinkronih pomoćnih funkcija je definirano koje sadrže specifične radnje koje se ponovno koriste u različitim koracima testiranja, poboljšavajući modularnost koda i mogućnost održavanja.
+
+\begin{verbatim}
+async function login(page: Page) {
+    await loginPage.verifyVersion();
+    await loginPage.loginCorpAdm();
+    const okButton = page.locator("//button[text()='OK']");
+    if (await okButton.isVisible()) {
+        await okButton.click();
+    }
+    console.log('Login Check Successful');
+}
+\end{verbatim}
