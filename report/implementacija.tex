@@ -3,7 +3,7 @@
 Jedan od razloga za proučavanje ove teme je bio rješavanje stvarnog problema opisanog u \ref{current_postdeploy}.
 U nastavku ovog poglavlja biti će opisan izvorni kod koji se koristio za provedbu automatskog testiranja.
 
-Prikazana skripta demonstrira organizirani pristup automatizaciji testiranja web aplikacija pomoću Playwrighta. Iskorištavanjem POM-ova i modularnih funkcija, osigurava da su testovi čitljivi i održavani. Svaka stranica iz JSON konfiguracije prolazi slijed provjera za provjeru funkcionalnosti, uz fleksibilnost da se prema potrebi jednostavno omogući ili onemogući određeni testni korak.
+Prikazana skripta demonstrira organizirani pristup automatizaciji testiranja web aplikacija pomoću Playwrighta. Iskorištavanjem objektnih modela stranica (POM - page object module u nastavku teksta) i modularnih funkcija, osigurava da su testovi čitljivi i održavani. Svaka stranica iz JSON konfiguracije prolazi slijed provjera za provjeru funkcionalnosti, uz fleksibilnost da se prema potrebi jednostavno omogući ili onemogući određeni testni korak.
 
 \section{Uvođenje i inicijalizacija}
 Skripta započinje serijom uvoženja pomoćnih komponenti potrebnih za testiranje
@@ -29,7 +29,7 @@ import { enGB } from 'date-fns/locale';
 \end{verbatim}
 
 Navedene komande uvoze djelove Playwright biblioteke potrebne za učitavanje stranice kao i provjeru dobivenih rezultata s očekivanim vrijednostima.
-Nadalje, cijeli proizvod je podijeljen u manje komponente koje se dijele unutar programa te su isti definirani u objektnim modelima stranica (POM - page object module u nastavku teksta)
+Nadalje, cijeli proizvod je podijeljen u manje komponente koje se dijele unutar programa te su isti definirani u POMu.
 Podaci o stranicama koje treba testirati su učitani putem JSON formata te također se koristi \texttt{date-fns} biblioteka za manipulaciju i formatiranje datuma.
 
 \section{Deklaracija varijabli}
