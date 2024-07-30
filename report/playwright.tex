@@ -121,38 +121,47 @@ Kroz automatizaciju ovih koraka, CI/CD pipeline pomaže u smanjenju rizika od gr
 
 Integracija Playwright-a u CI/CD pipeline omogućava automatizirano izvođenje testova pri svakoj promjeni koda, čime se osigurava da sve funkcionalnosti aplikacije rade ispravno prije nego što se promjene implementiraju u produkciju.
 
-Definicija CI/CD Pipeline-a: Nakon konfiguracije repozitorija, potrebno je definirati CI/CD pipeline. To se obično radi pomoću YAML datoteka koje sadrže instrukcije za izgradnju, testiranje i distribuciju aplikacije. U nastavku je primjer osnovne konfiguracije za GitHub Actions:
+Definicija CI/CD Pipeline-a: Nakon konfiguracije repozitorija, potrebno je definirati CI/CD pipeline. To se obično radi pomoću YAML datoteka koje sadrže instrukcije za izgradnju, testiranje i distribuciju aplikacije. U nastavku je primjer osnovne konfiguracije za GitHub Actions, a može biti generirana automatski prilikom inicijalizacije projekta kao što je prikazana na slici \ref{img:ghActionPrompt}:
+
+\begin{figure}[!h]\begin{center}
+  \includegraphics[width=1\textwidth]{"img/ghActionPrompt"}
+  \caption{Upit za kreiranje Git Hub Action workflowa prilikom inicijalizacije projekta}\label{img:ghActionPrompt}
+\end{center}\end{figure}
 
 \begin{verbatim}
 name: Playwright Tests
-
 on:
   push:
-    branches:
-      - main
+    branches: [ main, master ]
   pull_request:
-    branches:
-      - main
+    branches: [ main, master ]
 
 jobs:
   test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: '14'
+        node-version: lts/*
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
+
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
 
     - name: Run Playwright tests
       run: npx playwright test
 
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
 \end{verbatim}
 Ova konfiguracija definira akcije koje će se pokrenuti pri svakom push-u ili pull request-u na glavnu granu repozitorija. Akcije uključuju preuzimanje koda, postavljanje Node.js okruženja, instalaciju zavisnosti i pokretanje Playwright testova.
 
