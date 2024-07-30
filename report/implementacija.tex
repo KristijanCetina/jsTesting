@@ -1,9 +1,18 @@
-\chapter{Implementacija u produkciji na stvarnom proizvodu}\label{ch:implementacija}
+\chapter{Studija slučaja}\label{ch:implementacija}
 
-Jedan od razloga za proučavanje ove teme je bio rješavanje stvarnog problema opisanog u \ref{current_postdeploy}.
-U nastavku ovog poglavlja biti će opisan izvorni kod koji se koristio za provedbu automatskog testiranja.
+Proučavanje teme automatizacije testiranja web aplikacija putem Playwright alata predstavlja značajan korak u unapređenju kvalitete softvera i učinkovitosti testnih procesa.
+Ovaj slučajni studij je motiviran stvarnim problemom automatizacije testiranja opisanom u poglavlju \ref{current_postdeploy}.
+U nastavku poglavlja, detaljno će biti opisan izvorni kod korišten za implementaciju automatiziranih testova, naglašavajući ključne aspekte korištenih metoda i tehnika.
 
-Prikazana skripta demonstrira organizirani pristup automatizaciji testiranja web aplikacija pomoću Playwrighta. Iskorištavanjem objektnih modela stranica (POM - page object module u nastavku teksta) i modularnih funkcija, osigurava da su testovi čitljivi i održavani. Svaka stranica iz JSON konfiguracije prolazi slijed provjera za provjeru funkcionalnosti, uz fleksibilnost da se prema potrebi jednostavno omogući ili onemogući određeni testni korak.
+Glavna svrha prikazane skripte jest demonstracija strukturiranog pristupa automatizaciji testiranja web aplikacija koristeći Playwright.
+Korištenjem modela objekata stranica (POM - Page Object Model) i modularnih funkcija, osigurava se čitljivost i održivost testova. 
+Svaka stranica, definisana u JSON konfiguraciji, prolazi kroz slijed provjera funkcionalnosti, omogućujući fleksibilnost u uključivanju ili isključivanju određenih testnih koraka prema potrebi.
+
+Ovo poglavlje će se detaljno baviti procesom uvođenja i inicijalizacije potrebnih komponenti, deklaracijom varijabli za instanciranje POM klasa, konfiguracijom testova, te glavnim testnim skriptama. 
+Također, uključit će se i objašnjenje pomoćnih funkcija koje povećavaju modularnost i održivost koda, kao i pregled baznih objekata stranica korištenih u testovima.
+
+Kroz ovu studiju slučaja, cilj je pružiti sveobuhvatan uvid u praktične aspekte automatizacije testiranja, pokazujući kako se može postići visoka razina pouzdanosti i učinkovitosti u provjeri funkcionalnosti web aplikacija.
+
 
 \section{Uvođenje i inicijalizacija}
 Skripta započinje serijom uvoženja pomoćnih komponenti potrebnih za testiranje
