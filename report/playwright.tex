@@ -110,4 +110,64 @@ Na slici \ref{img:pwCodeGen} je prikazan izgled sučelja za generiranje testova 
 \end{itemize}
 
 
-% \section{Kontinuirana integracija - CI}
+\section{Kontinuirana integracija i testiranje}\label{CI/CD}
+Uvođenje kontinuirane integracije (CI) i kontinuirane dostave (CD) predstavlja jedan od ključnih elemenata suvremenog razvoja softvera, omogućujući timovima bržu, pouzdaniju i konzistentniju isporuku softverskih rješenja. 
+U nastavku će biti opisano kako i zašto napraviti jednostavan CI/CD pipeline-a za automatizirano testiranje pomoću Playwrighta.
+
+CI/CD pipeline je automatizirani niz koraka koji omogućuje brzu i pouzdanu isporuku aplikacija. CI/CD pipeline se sastoji od niza automatiziranih procesa koji uključuju izgradnju (build), testiranje i distribuciju (deployment) aplikacije. 
+Kroz automatizaciju ovih koraka, CI/CD pipeline pomaže u smanjenju rizika od grešaka, ubrzava proces isporuke te osigurava dosljednost i kvalitetu softverskih rješenja.
+
+% \subsection{Postavljanje Playwrighta u CI/CD pipeline}
+
+Integracija Playwright-a u CI/CD pipeline omogućava automatizirano izvođenje testova pri svakoj promjeni koda, čime se osigurava da sve funkcionalnosti aplikacije rade ispravno prije nego što se promjene implementiraju u produkciju.
+
+Definicija CI/CD Pipeline-a: Nakon konfiguracije repozitorija, potrebno je definirati CI/CD pipeline. To se obično radi pomoću YAML datoteka koje sadrže instrukcije za izgradnju, testiranje i distribuciju aplikacije. U nastavku je primjer osnovne konfiguracije za GitHub Actions:
+
+\begin{verbatim}
+name: Playwright Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Playwright tests
+      run: npx playwright test
+
+\end{verbatim}
+Ova konfiguracija definira akcije koje će se pokrenuti pri svakom push-u ili pull request-u na glavnu granu repozitorija. Akcije uključuju preuzimanje koda, postavljanje Node.js okruženja, instalaciju zavisnosti i pokretanje Playwright testova.
+
+Nakon definiranja CI/CD pipeline-a, svaki push ili pull request pokreće automatiziranu izgradnju i testiranje aplikacije. 
+Playwright testovi se izvršavaju unutar pipeline-a, čime se osigurava da sve promjene koda ne narušavaju postojeću funkcionalnost.
+
+Posljednji korak CI/CD pipeline-a je distribucija aplikacije. 
+Ako svi testovi prođu uspješno, aplikacija se automatski distribuira na produkcijsko okruženje. 
+Ovaj korak može uključivati različite metode distribucije, kao što su deployment na cloud platforme, generiranje Docker datoteke (image) ili distribucija na serverske klastere.
+
+\subsection*{Prednosti CI/CD Pipelinea za Playwright}
+Implementacija CI/CD pipelinea za Playwright donosi brojne prednosti:
+\begin{itemize}
+    \item Automatizacija: CI/CD pipeline automatizira proces testiranja i distribucije, čime se smanjuje potreba za ručnim intervencijama i povećava produktivnost tima.
+    \item Konzistentnost: Automatizirano testiranje osigurava dosljednost i kvalitetu aplikacije, jer se testovi izvršavaju pri svakoj promjeni koda.
+    \item Brža isporuka: CI/CD pipeline ubrzava proces isporuke, omogućujući brže uvođenje novih funkcionalnosti i popravaka grešaka.
+    \item Rano otkrivanje problema: Redovito izvršavanje testova omogućava rano otkrivanje problema, čime se smanjuje rizik od grešaka u produkcijskom okruženju.
+\end{itemize}
