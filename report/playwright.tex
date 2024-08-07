@@ -82,6 +82,413 @@ Na slici \ref{img:pwInit} vidimo kako izgleda uspješna instalacija i inicijaliz
     \includegraphics[width=1\textwidth]{"img/pwInit"}
     \caption{Ekran nakon uspješne instalacije i inicijalizacije Playwright paketa}\label{img:pwInit}
 \end{center}\end{figure}
+
+\section{Lokatori}
+
+Lokatori su ključni element u radu s pronalaženjem elemenata nad kojima želimo izvršiti neku radnju.
+Ukratko, lokatori predstavljaju način pronalaženja elemenata na stranici u bilo kojem trenutku.
+Kroz različite metode, Playwright omogućuje precizno i učinkovito lociranje elemenata, čime se omogućava pouzdanost testova.
+
+Ovo su preporučeni ugrađeni lokatori:
+
+\begin{itemize}
+  \item \texttt{page.getByRole()} za lociranje prema eksplicitnim i implicitnim atributima pristupačnosti.
+  \item \texttt{page.getByText()} za lociranje prema tekstualnom sadržaju.
+  \item \texttt{page.getByLabel()} za lociranje kontrola obrasca prema tekstu pridružene oznake.
+  \item \texttt{page.getByPlaceholder()} za lociranje unosa prema rezerviranom mjestu.
+  \item \texttt{page.getByAltText()} za lociranje elemenata, obično slika, prema njihovom alternativnom tekstu.
+  \item \texttt{page.getByTitle()} za lociranje elemenata prema atributu naslova.
+  \item \texttt{page.getByTestId()} za lociranje elemenata na temelju atributa data-testid (moguće je konfigurirati i druge atribute).
+\end{itemize}
+
+Primjer korištenja:
+
+\begin{verbatim}
+await page.getByLabel('User Name').fill('John');
+await page.getByLabel('Password').fill('secret-password');
+await page.getByRole('button', { name: 'Sign in' }).click();
+await expect(page.getByText('Welcome, John!')).toBeVisible();
+\end{verbatim}
+
+Playwright dolazi s više ugrađenih lokatora. Kako bi testovi bili otporniji, preporučuje se prioritiziranje atributa usmjerenih prema korisniku i eksplicitnih ugovora, poput \texttt{page.getByRole()}.
+
+Na primjer, za sljedeću DOM strukturu:
+
+\begin{verbatim}
+<button>Sign in</button>
+\end{verbatim}
+
+Element se može locirati prema njegovoj ulozi \texttt{button} s nazivom "Sign in":
+
+\begin{verbatim}
+await page.getByRole('button', { name: 'Sign in' }).click();
+\end{verbatim}
+
+\subsection*{Lociranje prema ulozi}
+
+Lokator \texttt{page.getByRole()} odražava kako korisnici i asistivne tehnologije percipiraju stranicu, primjerice je li neki element gumb ili potvrdni okvir.
+Kada se locira prema ulozi, obično treba navesti i dostupno ime kako bi lokator točno odredio element.
+
+Primjer DOM strukture:
+
+\begin{verbatim}
+<h3>Sign up</h3>
+<label>
+  <input type="checkbox" /> Subscribe
+</label>
+<br/>
+<button>Submit</button>
+\end{verbatim}
+
+Elementi se mogu locirati prema implicitnim ulogama:
+
+\begin{verbatim}
+await expect(page.getByRole('heading', { name: 'Sign up' })).toBeVisible();
+await page.getByRole('checkbox', { name: 'Subscribe' }).check();
+await page.getByRole('button', { name: /submit/i }).click();
+\end{verbatim}
+
+\subsection*{Lociranje prema oznaci}
+
+Većina kontrola obrasca ima pridružene oznake koje se mogu koristiti za interakciju s obrascem.
+Ova metoda se koristi kada lociramo polja obrasca:
+
+Primjer DOM strukture:
+\begin{verbatim}
+<label>Password <input type="password" /></label>
+\end{verbatim}
+
+Unos se može ispuniti nakon lociranja prema tekstu oznake:
+
+\begin{verbatim}
+await page.getByLabel('Password').fill('secret');
+\end{verbatim}
+
+\subsection*{Lociranje prema rezerviranom mjestu (placeholder)}
+
+Unosi mogu imati placeholder atribut koji korisnicima sugerira koji bi se vrijednosti trebali unijeti.
+Ova metoda se koristi kada lociramo elemente obrasca koji nemaju oznake, ali imaju tekstove rezerviranog mjesta:
+
+Primjer DOM strukture:
+
+\begin{verbatim}
+<input type="email" placeholder="name@example.com" />
+\end{verbatim}
+
+Unos se može ispuniti nakon lociranja prema tekstu rezerviranog mjesta:
+
+\begin{verbatim}
+await page.getByPlaceholder('name@example.com').fill('playwright@microsoft.com');
+\end{verbatim}
+
+\subsection*{Lociranje prema tekstu}
+
+Lokatori prema tekstu omogućuju pronalaženje elementa prema tekstu koji sadrži.
+Možete koristiti podstring, točan niz ili regularni izraz.
+
+Primjer DOM strukture:
+
+\begin{verbatim}
+<span>Welcome, John</span>
+\end{verbatim}
+
+Element se može locirati prema tekstu koji sadrži:
+
+\begin{verbatim}
+await expect(page.getByText('Welcome, John')).toBeVisible();
+\end{verbatim}
+
+Za točno podudaranje:
+
+\begin{verbatim}
+await expect(page.getByText('Welcome, John', { exact: true })).toBeVisible();
+\end{verbatim}
+
+Za podudaranje s regularnim izrazom:
+
+\begin{verbatim}
+await expect(page.getByText(/welcome, [A-Za-z]+$/i)).toBeVisible();
+\end{verbatim}
+
+\subsection*{Lociranje prema alternativnom tekstu}
+
+Sve slike trebale bi imati atribut alt koji opisuje sliku.
+Ova metoda se koristi za lociranje slika prema alternativnom tekstu:
+
+Primjer DOM strukture:
+
+\begin{verbatim}
+<img alt="playwright logo" src="/img/playwright-logo.svg" width="100" />
+\end{verbatim}
+
+Slika se može kliknuti nakon lociranja prema alternativnom tekstu:
+
+\begin{verbatim}
+await page.getByAltText('playwright logo').click();
+\end{verbatim}
+
+\subsection*{Lociranje prema naslovu}
+
+Elementi se mogu locirati prema odgovarajućem atributu naslova koristeći **page.getByTitle()**.
+
+Primjer DOM strukture:
+
+\begin{verbatim}
+<span title='Issues count'>25 issues</span>
+\end{verbatim}
+
+Broj problema može se provjeriti nakon lociranja prema tekstu naslova:
+
+\begin{verbatim}
+await expect(page.getByTitle('Issues count')).toHaveText('25 issues');
+\end{verbatim}
+
+\subsection*{Lociranje prema test id-u}
+
+Testiranje prema test id-evima je najotporniji način testiranja jer će test proći čak i ako se tekst ili uloga atributa promijene.
+No, testiranje prema test id-evima nije usmjereno prema korisniku.
+Ako je vrijednost uloge ili teksta važna, valja razmotriti korištenje lokatora usmjerenih prema korisniku poput \texttt{page.getByRole()} ili \texttt{page.getByText()}.
+
+Primjer DOM strukture:
+
+\begin{verbatim}
+<button data-testid="directions">Itinéraire</button>
+\end{verbatim}
+
+Element se može locirati prema njegovom test id-u:
+
+\begin{verbatim}
+await page.getByTestId('directions').click();
+\end{verbatim}
+
+\subsection*{Podešavanje prilagođenog atributa test id-a}
+
+Prema zadanim postavkama, \texttt{page.getByTestId()} će locirati elemente na temelju atributa \texttt{data-testid}, ili može biti drukčije konfigurirati u testnoj okolini ili pak pozivom \texttt{selectors.setTestIdAttribute()}.
+
+Primjer konfiguracije:
+
+\begin{verbatim}
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  use: {
+    testIdAttribute: 'data-pw'
+  }
+});
+\end{verbatim}
+
+Te se onda može koristiti dati atribut za lociranje elemenata:
+
+\begin{verbatim}
+\begin{verbatim}
+<button data-pw="directions">Itinéraire</button>
+\end{verbatim}
+
+Element se može locirati kao i obično:
+
+\begin{verbatim}
+await page.getByTestId('directions').click();
+\end{verbatim}
+
+\subsection*{Lociranje prema CSS-u ili XPath-u}
+
+Ako je apsolutno nužno koristiti CSS ili XPath lokatore, može se koristiti \texttt{page.locator()} za kreiranje lokatora koji uzima selektor opisujući kako pronaći element na stranici.
+Playwright podržava CSS i XPath selektore te ih automatski prepoznaje ako izostavite prefiks \texttt{css=} ili \texttt{xpath=}.
+
+Primjeri korištenja:
+
+\begin{verbatim}
+await page.locator('css=button').click();
+await page.locator('xpath=//button').click();
+
+await page.locator('button').click();
+await page.locator('//button').click();
+\end{verbatim}
+
+CSS i XPath selektori mogu biti vezani za strukturu DOM-a ili implementaciju, što znači da se mogu prekinuti kada se struktura DOM-a promijeni.
+Dugi CSS ili XPath lanci su primjer loše prakse koja vodi do nestabilnih testova:
+
+\begin{verbatim}
+await page.locator('#tsf > div:nth-child(2) > div.A8SBwf > div.RNNXgb > div > div.a4bIc > input').click();
+await page.locator('//*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input').click();
+\end{verbatim}
+
+Preporuka je izbjegavati CSS i XPath lokatore kad god je to moguće i umjesto toga koristiti lokatore koji su bliži percepciji korisnika stranice, poput \texttt{page.getByRole()} ili definirati eksplicitne testne atribute koristeći test id-ove.
+
+\subsection*{Lociranje u Shadow DOM-u}
+
+Svi lokatori u Playwrightu prema zadanim postavkama rade s elementima u Shadow DOM-u, s iznimkom:
+\begin{itemize}
+\item Lociranje prema XPath-u ne prolazi kroz shadow root.
+\item Shadow root u zatvorenom načinu rada nije podržan.
+\end{itemize}
+
+Primjer s prilagođenom web komponentom:
+
+\begin{verbatim}
+<x-details role="button" aria-expanded="true" aria-controls="inner-details">
+  <div>Title</div>
+  #shadow-root
+  <div id="inner-details">
+    <button>Submit</button>
+  </div>
+</x-details>
+\end{verbatim}
+
+Elementi u Shadow DOM-u mogu se locirati prema njihovim ulogama:
+
+\begin{verbatim}
+await page.getByRole('button', { name: 'Submit' }).click();
+\end{verbatim}
+
+Elementi u zatvorenom Shadow rootu nisu dostupni lokatorima:
+
+\begin{verbatim}
+#shadow-root(mode=closed)
+  <button>Submit</button>
+\end{verbatim}
+
+\subsection*{Metode lokatora}
+
+Lokator je centar svih akcija i asertacija u Playwrightu:
+
+\begin{itemize}
+ 
+  \item \texttt{locator.click()} klikne na element.
+  \item \texttt{locator.fill(value)} ispunjava unos.
+  \item \texttt{locator.count()} vraća broj elemenata.
+\end{itemize}
+
+Ponašanje lokatora koristi se za automatsko čekanje elemenata.
+Playwrightova \texttt{expect(locator).toBeVisible()} metoda čeka dok element ne postane vidljiv prije nego što nastavi.
+Lokatori su također robusniji prema nestalnosti DOM-a, čekajući automatski da elementi postanu dostupni i ponovno pokušavajući u slučaju grešaka u mreži ili spore dinamike stranice.
+
+Primjeri:
+
+\begin{verbatim}
+await page.locator('text=Submit').click();
+await page.locator('input[type="password"]').fill('password');
+await expect(page.locator('button')).toHaveCount(3);
+\end{verbatim}
+
+Više metoda za rad s lokatorima:
+\begin{itemize}
+  
+  \item  \texttt{locator.first()} locira prvi element.
+  \item  \texttt{locator.last()} locira zadnji element.
+  \item  \texttt{locator.nth(index)} locira n-ti element.
+\end{itemize}
+
+Primjeri:
+
+\begin{verbatim}
+await page.locator('button').first().click();
+await page.locator('button').last().click();
+await page.locator('button').nth(2).click();
+\end{verbatim}
+
+\subsection*{Testiranje dinamike}
+
+Lokatori u Playwrightu automatski čekaju da element postane dostupan i ponovo pokušavaju ako se element mijenja, što ih čini otpornima na dinamiku stranica.
+Ovdje su neki primjeri kako se to koristi:
+
+Primjeri:
+
+\begin{verbatim}
+// Čeka da gumb postane vidljiv i klikne ga
+await page.locator('button').click();
+
+// Ispunjava unos kada postane dostupan
+await page.locator('input[type="password"]').fill('password');
+
+// Čeka da gumb postane nevidljiv
+await expect(page.locator('button')).not.toBeVisible();
+\end{verbatim}
+
+Playwrightova \texttt{expect} metoda može se koristiti za različite asertacije, što dodatno povećava fleksibilnost i robusnost testova.
+
+\subsection*{Primjeri naprednog lociranja}
+
+Lokatori mogu biti kombinirani za složenije scenarije:
+
+\texttt{Chaining locators}: Kombinacija više lokatora za precizno ciljanje elementa.
+
+\begin{verbatim}
+await page.locator('form').locator('input[name="username"]').fill('john_doe');
+\end{verbatim}
+
+\texttt{Filtering locators}: Korištenje filtera kao što su \texttt{has} i \texttt{hasText} za daljnje sužavanje rezultata.
+
+\begin{verbatim}
+await page.locator('div').locator('text=Submit').click();
+await page.locator('div', { hasText: 'Important' }).click();
+\end{verbatim}
+
+\texttt{Working with child locators}: Ciljanje potomaka unutar određenog elementa.
+
+\begin{verbatim}
+await page.locator('ul').locator('li >> text=Item 2').click();
+\end{verbatim}
+
+\texttt{Relative locators}: Korištenje relativnih lokatora za ciljanje elemenata u odnosu na druge elemente.
+
+\begin{verbatim}
+await page.locator('text=Name').locator('..').locator('input').fill('Jane Doe');
+\end{verbatim}
+
+\subsection*{Složeniji scenariji lociranja}
+
+Za složenije scenarije, Playwright nudi dodatne mogućnosti:
+Korištenje \texttt{nth()} se kada postoji potreba za ciljanjem određenog pojavljivanja elementa među više istovrsnih elemenata.
+
+\begin{verbatim}
+await page.locator('button').nth(2).click(); // Klik na treći gumb u nizu
+\end{verbatim}
+
+Kombinacija više lokatora za precizno ciljanje.
+\begin{verbatim}
+await page.locator('section').locator('button', { hasText: 'Submit' }).click();
+\end{verbatim}
+
+Rad s elementima unutar Shadow DOM-a.
+\begin{verbatim}
+await page.locator('my-component').locator('button', { hasText: 'Submit' }).click();
+\end{verbatim}
+
+\subsection*{Praktične primjene}
+
+Evo nekoliko praktičnih primjera kako se lokatori koriste u stvarnim scenarijima testiranja:
+
+\subsubsection*{Automatsko popunjavanje obrazaca:}
+
+\begin{verbatim}
+await page.getByLabel('Username').fill('test_user');
+await page.getByLabel('Password').fill('password123');
+await page.getByRole('button', { name: 'Login' }).click();
+\end{verbatim}
+
+\subsubsection*{Validacija sadržaja}:
+
+\begin{verbatim}
+await expect(page.getByText('Welcome, test_user!')).toBeVisible();
+\end{verbatim}
+
+\subsubsection*{Interakcija s pop-up prozorima}:
+
+\begin{verbatim}
+await page.getByRole('button', { name: 'Open modal' }).click();
+await expect(page.getByRole('dialog')).toBeVisible();
+await page.getByRole('button', { name: 'Close' }).click();
+\end{verbatim}
+
+\subsubsection*{Navigacija kroz elemente}:
+
+\begin{verbatim}
+await page.getByRole('link', { name: 'Next' }).click();
+await expect(page).toHaveURL('/next-page');
+\end{verbatim}
+
+
 \section{Generiranje testova}
 Playwright ima mogućnost generiranja testova tako što snima klikanje miša korisnika te to prevodi u kod koji se može izvršavati.
 To je vrlo jednostavan i praktičan način da čak i totalni početnici mogu krenuti s izradom automatskih testova, a kasnije s iskustvom se ti testovi mogu rafinirati i poboljšavati.
@@ -125,7 +532,7 @@ Definicija CI/CD Pipeline-a: Nakon konfiguracije repozitorija, potrebno je defin
 
 \begin{figure}[!h]\begin{center}
   \includegraphics[width=1\textwidth]{"img/ghActionPrompt"}
-  \caption{Upit za kreiranje Git Hub Action workflowa prilikom inicijalizacije projekta}\label{img:ghActionPrompt}
+  \caption{Upit za kreiranje GitHub Action workflowa prilikom inicijalizacije projekta}\label{img:ghActionPrompt}
 \end{center}\end{figure}
 
 \begin{verbatim}
@@ -180,3 +587,13 @@ Implementacija CI/CD pipelinea za Playwright donosi brojne prednosti:
     \item Brža isporuka: CI/CD pipeline ubrzava proces isporuke, omogućujući brže uvođenje novih funkcionalnosti i popravaka grešaka.
     \item Rano otkrivanje problema: Redovito izvršavanje testova omogućava rano otkrivanje problema, čime se smanjuje rizik od grešaka u produkcijskom okruženju.
 \end{itemize}
+
+\subsection*{Implementacija kontinuiranog testiranja unutar Azure DevOps okruženja}
+
+Konfiguracija u YAML formatu:
+\begin{verbatim}
+  steps:
+- script: 'npx playwright test tests/postDeployPipelineQA.test.ts --workers 1'
+  workingDirectory: '$(System.DefaultWorkingDirectory)/Playwright_Source/postDeployTests'
+  displayName: 'Run The Test'
+\end{verbatim}
