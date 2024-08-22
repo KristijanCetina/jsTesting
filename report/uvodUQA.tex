@@ -11,15 +11,35 @@ Pojedine funkcije u kodu se pokrivaju unit testovima koji se brinu da pojedine k
 \end{center}\end{figure}
 
 \section{Proces testiranja}
-Svaki proces testiranja započinje sa izradom plana testiranja unutar kojeg se definira šte se testira na koji način te koji su uvjeti da se zadani test smatra uspješnim (\textit{engl. Acceptance critera}).
+Svaki proces testiranja započinje izradom plana testiranja, unutar kojeg se precizno definira što će se testirati, na koji način, te koji su uvjeti za uspješno prolazak testa, poznati kao kriteriji prihvatljivosti (\textit{engl. Acceptance criteria}).
+Ovaj plan služi kao temeljni dokument koji vodi cijeli proces testiranja, osiguravajući da su svi sudionici projekta usklađeni s ciljevima i metodologijama testiranja.
 
-Tokom samog razvijanja nove funkcionalnosti u softwareskom prozvodu često se izvršava ručno testiranje kako bi se utvrdilo da li proces razvoja ide u zadanom smjenu i u konačnici da se radi ono što je dogovoreno bilo interno s timom ili čak i sa klijentom.
+Tijekom razvoja nove funkcionalnosti u softverskom proizvodu često se provodi ručno testiranje.
+Ovo testiranje omogućava timu da prati napredak razvoja i osigura da funkcionalnost napreduje u skladu sa zadanim smjernicama.
+Ručno testiranje često uključuje provjeru da li se implementirane značajke ponašaju prema dogovorenim specifikacijama, bilo interno unutar tima, bilo s klijentom.
+Ovaj korak je ključan za rano otkrivanje i ispravljanje potencijalnih problema prije nego što postanu preveliki ili skupi za rješavanje.
 
-Nakon što se završi sam razvoj nove funkcionalnosti onda se radi i završno funkcionalno testiranje i izrada automatskih testova koji će se u budućnosti izvršavati automatski u zadanom intervalu kako bi se osiguralo da uvođenje nove funkcionalnosti ne uvode nove pogreške na već ispravnim funkcionalnostima.
-Poznato kao i regresijsko testiranje.
+Nakon završetka razvoja nove funkcionalnosti, slijedi završno funkcionalno testiranje.
+U ovoj fazi, funkcionalnost se testira kako bi se osiguralo da ispunjava sve zadane kriterije i da je spremna za implementaciju u produkciju.
+Pored toga, izrađuju se i automatizirani testovi, koji se zatim redovito izvršavaju u zadanom intervalu.
+Ovi automatizirani testovi imaju ključnu ulogu u osiguravanju da uvođenje novih funkcionalnosti ne izaziva nepredviđene pogreške u već postojećim, ispravno funkcionirajućim dijelovima softvera.
+Ovaj oblik testiranja poznat je kao regresijsko testiranje.
 
-Bitno je testirati realne scenarije koji se očekuju da moraju zadovoljiti,  kao i one scenarije od kojih se očekuje da nesmiju proći test.
-To se radi u svrhu potvrde da test zaista radi ono što je namijenjen,  a ne da imamo propust u samom testu koji uvijek vraća pozitivan rezultat ili da testirana funkcija nema implementiranu validaciju ulaznih parametara koji onda mogu izazvati nepoželjno ponašanje programa.
+Regresijsko testiranje služi kao zaštitni mehanizam, osiguravajući da svaka promjena u softveru ne uvodi nove greške ili probleme.
+To je posebno važno u složenim sustavima, gdje čak i mala promjena u kodu može imati dalekosežne posljedice.
+Automatizirani regresijski testovi omogućuju kontinuiranu provjeru stabilnosti softvera kroz cijeli njegov životni ciklus, smanjujući rizik od neočekivanih problema prilikom uvođenja novih značajki.
+Osim tehničkog testiranja, bitno je provoditi testiranje na temelju realnih scenarija koji se očekuju u stvarnoj upotrebi softvera.
+Ovi scenariji uključuju testove koji simuliraju stvarne korisničke interakcije kako bi se osiguralo da softver zadovoljava sve funkcionalne zahtjeve.
+
+Također, važno je provoditi testove koji simuliraju neispravne ili ekstremne uvjete, poznate kao negativni scenariji, kako bi se potvrdilo da sustav pravilno rukuje pogrešnim unosima ili neuobičajenim situacijama.
+Testiranje u negativnim scenarijima je od ključne važnosti za osiguranje robusnosti softvera.
+Cilj ovih testova je potvrditi da sustav ispravno prepoznaje i odbacuje neispravne ili nevažeće unose, te da ne dolazi do neželjenih ponašanja ili grešaka unutar softvera.
+Time se osigurava da softver ne samo da ispravno funkcionira u idealnim uvjetima, već da je otporan i na nepravilne ulazne podatke ili nepredviđene situacije.
+
+Proces testiranja softvera je iterativan i kontinuiran.
+Kako se softver razvija i nadograđuje, tako se i testovi moraju prilagođavati i proširivati kako bi obuhvatili nove funkcionalnosti i promjene.
+Kroz ovaj kontinuirani ciklus testiranja, osigurava se da softver ostaje pouzdan, funkcionalan i spreman za korisničke potrebe, čak i dok se dinamično mijenja i razvija.
+Uspješan proces testiranja stoga nije samo pitanje otkrivanja grešaka, već i strateški alat za kontinuirano poboljšanje kvalitete softverskog proizvoda.
 
 \section{Ciljevi testiranja}
 Ciljevi testiranja moraju zadovoljavati nekoliko kriterija, a to su:
@@ -33,22 +53,105 @@ Ciljevi testiranja moraju zadovoljavati nekoliko kriterija, a to su:
 
 Neki od ciljeva testiranja su: \cite{quadri2010software}
 \subsection*{Verifikacija i validacija}
-Cilja testiranja nije samo pronaći pogreške u kodu ili dizajnu.  
-Cilj je verificirati da software zaista radi ono što je namjenjen i kako je zamišljen.
-Jedan od rezultata testiranja je i izvještaj (\textit{test report}).
+Cilj testiranja nije samo otkrivanje pogrešaka u kodu ili dizajnu, već i potvrđivanje da softver ispunjava svoju namjenu te radi onako kako je zamišljen.
+U tom kontekstu, verifikacija i validacija predstavljaju dvije ključne aktivnosti koje osiguravaju ispravnost i pouzdanost softverskog proizvoda.
+
+Verifikacija je proces kojim se provjerava da li je softver pravilno implementiran u skladu s definiranim zahtjevima i specifikacijama.
+Ova faza testiranja fokusira se na pitanje: "Da li gradimo proizvod na ispravan način?" Verifikacija se odnosi na sve aspekte razvoja softvera, uključujući pregled kodova, provjere dizajna, statičke analize, i jedinicna testiranja.
+Kroz ove aktivnosti, tim osigurava da su svi zadani kriteriji i specifikacije ispunjeni prije nego što softver bude pušten u uporabu.
+
+S druge strane, validacija se odnosi na potvrđivanje da softver radi ono što bi trebao raditi u stvarnim uvjetima korištenja, odnosno da ispunjava očekivanja krajnjih korisnika.
+Validacija odgovara na pitanje: "Da li smo izgradili pravi proizvod?" U ovoj fazi, fokus je na funkcionalnim testovima, testovima performansi, korisničkom testiranju i integracijskim testovima.
+Validacija se provodi kako bi se osiguralo da softver ispunjava svoje ciljeve u stvarnom svijetu te da zadovoljava potrebe korisnika i poslovnih zahtjeva.
+
+Jedan od ključnih rezultata testiranja, bilo da se radi o verifikaciji ili validaciji, je izvještaj o testiranju (\textit{test report}).
+Ovaj dokument pruža detaljan pregled provedenih testova, uključujući informacije o tome koji su testovi izvršeni, rezultati tih testova, te sve otkrivene greške ili nedostaci.
+Izvještaj o testiranju služi kao službeni zapis koji omogućava praćenje statusa softvera i donošenje informiranih odluka o daljnjem razvoju ili puštanju softvera u proizvodnju.
+
+Izvještaj o testiranju također igra ključnu ulogu u komunikaciji između različitih dionika u projektu, uključujući razvojni tim, voditelje projekata, i klijente.
+Kroz jasno dokumentirane rezultate, izvještaj omogućava svim stranama da razumiju trenutačno stanje softvera, procijene rizike, te definiraju daljnje korake potrebne za osiguranje konačne kvalitete proizvoda.
+
+Verifikacija i validacija su stoga suštinski komplementarni procesi u testiranju softvera.
+Dok verifikacija osigurava da je softver tehnički ispravan i usklađen sa specifikacijama, validacija osigurava da softver ispunjava svoju namjenu i zadovoljava potrebe korisnika.
+Kombinacija ovih procesa omogućava isporuku kvalitetnog, pouzdanog i funkcionalnog softverskog proizvoda, čime se minimiziraju rizici i osigurava dugoročni uspjeh projekta.
+Verifikacija i validacija kroz testiranje pružaju sveobuhvatnu provjeru ispravnosti softvera, omogućujući da se otkriju i isprave svi problemi prije nego što proizvod dospije do krajnjih korisnika.
+Ove aktivnosti nisu samo tehnička nužnost, već su i ključne za postizanje visoke razine kvalitete i zadovoljstva korisnika, što u konačnici doprinosi uspjehu softverskog proizvoda na tržištu.
 
 \subsection*{Prioretiziranje pokrivenosti}
-U idealnom svijetu sa neograničenim resursima svaki dio koda i funkcionalnosti bi bio pokriven testovima, ali nažalost to nije moguće.
-Zato je bitno pravilno odrediti što je prioritet te što će se pokriti testovima. 
-U pravilu su to one funkcionalnosti i značajke koje nisu vidljive na prvi pogled čim se otvori program jer su takvi problemi lako uočljivi svakome.
-Isto tako, beskonačni testovi uzimaju mnogo dragocjenog vremena pa je i u tom pogledu bitno odrediti što se treba testirati.
+U idealnom svijetu s neograničenim resursima, svaki dio izvornog koda i svaka funkcionalnost softvera bili bi pokriveni testovima, osiguravajući maksimalnu razinu pouzdanosti i kvalitete.
+Međutim, u stvarnosti, resursi poput vremena, radne snage i financija su ograničeni, što zahtijeva pažljivo planiranje i prioritiziranje pri odlučivanju o tome koje će funkcionalnosti i dijelovi koda biti pokriveni testovima.
+Ova odluka je ključna za održavanje učinkovitosti i usmjeravanje napora prema onim aspektima softvera koji su najkritičniji za njegovu ispravnost i korisničko iskustvo.
+
+Prioritizacija testiranja obično se temelji na nekoliko ključnih kriterija.
+Prvi kriterij je kritičnost funkcionalnosti za osnovnu svrhu softvera.
+Funkcionalnosti koje su ključne za glavni rad aplikacije trebaju biti među prvima pokrivene testovima, jer svaki propust u tim dijelovima može imati ozbiljne posljedice po korisnike i poslovanje.
+Na primjer, u financijskim sustavima, algoritmi za izračunavanje i prijenos novca zahtijevaju visoku razinu pouzdanosti, te je stoga njihovo testiranje prioritet.
+
+Drugi važan kriterij je složenost koda.
+Kompleksniji dijelovi koda, koji sadrže više uvjetnih grana, petlji ili složenih logičkih izraza, podložniji su pogreškama i teže ih je ručno provjeriti.
+Stoga, upravo ti dijelovi trebaju biti prioritetno pokriveni testovima, kako bi se smanjio rizik od neočekivanih grešaka koje mogu biti teške za dijagnosticiranje i otklanjanje.
+Takvi složeni dijelovi koda često se nalaze "ispod površine", odnosno nisu vidljivi odmah prilikom otvaranja programa, te zahtijevaju pažljivo testiranje kako bi se osigurala njihova ispravnost.
+
+Treći aspekt koji utječe na prioritizaciju je učestalost korištenja određenih funkcionalnosti.
+Funkcionalnosti koje korisnici najčešće koriste trebaju biti dobro testirane, jer svaka greška u tim dijelovima može značajno narušiti korisničko iskustvo i povjerenje u softver.
+Testiranje takvih funkcionalnosti omogućava rano otkrivanje i otklanjanje problema prije nego što oni negativno utječu na većinu korisnika.
+
+Uz tehničke aspekte, potrebno je uzeti u obzir i vremenske i resursne ograničenosti.
+Beskonačno testiranje može dovesti do iscrpljivanja resursa, zbog čega je važno postaviti jasne granice i definirati što je potrebno testirati, a što ne.
+Ovdje dolazi do izražaja važnost balansiranja između pokrivenosti testovima i vremena potrebnog za njihovo izvršavanje.
+Testovi koji su preopsežni mogu oduzeti previše vremena, usporiti razvojni ciklus i povećati troškove bez proporcionalne koristi.
+
+Konačno, treba uzeti u obzir i povijest problema i grešaka u softveru.
+Funkcionalnosti i dijelovi koda koji su u prošlosti bili problematični trebaju biti prioritetno pokriveni testovima kako bi se smanjio rizik od ponovnog pojavljivanja istih problema.
+Također, nova funkcionalnost ili značajke koje se tek uvode u softver zahtijevaju dodatnu pažnju, budući da još nisu dovoljno ispitane u stvarnim uvjetima.
+Pravilno određivanje prioriteta omogućava učinkovito korištenje resursa, osigurava visoku kvalitetu kritičnih dijelova softvera, i smanjuje rizik od neotkrivenih grešaka koje bi mogle imati značajne posljedice po korisnike i poslovanje.
 
 \subsection*{Sljedivost}
-Dokumentiranje testova kada se nešto i kako testiralo je bitno kako bi se u slučaju pojave problema moglo odrediti kada je i koja promjena uzrokovala neželjeno ponašanje proizvoda.
-To je posebno bitno u odreženim kategorijama softwarea kao npr. u financijskom poslovanju gdje se može tražiti dodatna odgovornost samog proizvoda.
+Sljedivost je ključni cilj testiranja softvera koji osigurava da se sve faze razvoja softverskog proizvoda mogu pratiti unatrag, od krajnjeg rezultata do početnih zahtjeva.
+Dokumentiranje testova, uključujući kada je, kako i što testirano, ima presudnu ulogu u omogućavanju ove sljedivosti.
+U slučaju pojave problema, sljedivost omogućuje timu da identificira specifične promjene koje su dovele do neželjenog ponašanja proizvoda, čime se olakšava proces ispravljanja grešaka i unaprjeđenja kvalitete.
+
+Ovaj aspekt sljedivosti postaje posebno značajan u određenim kategorijama softvera, poput onih korištenih u financijskom sektoru, medicinskim uređajima, zrakoplovstvu, ili sigurnosno osjetljivim sustavima, gdje se može zahtijevati dodatna odgovornost samog proizvoda.
+U takvim kontekstima, testna dokumentacija ne služi samo kao interni alat za praćenje kvalitete, već može biti i pravno ili regulatorno obvezujući dokument.
+Organizacije često moraju dokazati da su sve komponente sustava testirane prema određenim standardima te da su promjene u kodu pažljivo praćene i evaluirane.
+
+Sljedivost omogućuje vezu između različitih artefakata u procesu razvoja softvera, kao što su poslovni zahtjevi, tehničke specifikacije, kod, testni slučajevi, i rezultati testiranja.
+Na primjer, sljedivost može osigurati da su svi poslovni zahtjevi pokriveni odgovarajućim testnim slučajevima, te da su svi otkriveni problemi povezani s određenim dijelovima koda ili specifikacija.
+Ova povezanost je ključna za omogućavanje potpune vidljivosti nad razvojem proizvoda i osiguranje da se niti jedan aspekt proizvoda ne zanemari tijekom testiranja.
+
+Kao dio sveobuhvatnog pristupa upravljanju kvalitetom, sljedivost također pomaže u upravljanju rizicima.
+Praćenjem svakog koraka u procesu razvoja i testiranja, timovi mogu identificirati potencijalne izvore rizika i brzo reagirati na promjene koje bi mogle utjecati na kvalitetu ili sigurnost proizvoda.
+Na primjer, ako promjena u jednom dijelu sustava izazove nepredviđene probleme, sljedivost omogućuje timu da brzo identificira korijenski uzrok i minimizira negativne posljedice.
+
+Osim toga, sljedivost igra važnu ulogu u dugoročnoj održivosti softverskih sustava.
+U projektima s dugim životnim ciklusima, gdje može doći do promjena u timu ili arhitekturi sustava, detaljna dokumentacija i sposobnost praćenja svih testova unatrag postaju neophodni za održavanje kvalitete i razumijevanje povijesti razvoja proizvoda.
+To omogućuje novim članovima tima da brzo shvate kontekst i povijest određenih odluka, smanjujući vrijeme potrebno za prilagodbu i povećavajući ukupnu učinkovitost tima.
+
+Sljedivost nije samo tehnička potreba, već strateški cilj testiranja softvera koji osigurava visoku razinu kontrole, transparentnosti i odgovornosti tijekom cijelog životnog ciklusa softverskog proizvoda.
+U složenim i reguliranim industrijama, sljedivost postaje temeljni aspekt osiguranja kvalitete, omogućujući organizacijama da održe visoke standarde i isporuče sigurne i pouzdane proizvode svojim korisnicima.
 
 \section{Uloga testera u timu}
-Glavna uloga testera, kao i samog procesa testiranja, je dodatna sigurnosna mreža koja je samo zadnja karika u lancu procesa testiranja i osiguranja kvalitete proizvoda.
-Dok su programeri (\textit{developeri, engl. developers}) zaduženi za pisanje unit testova,  testeri su zaduženi za pisanje i izvršavanje funkcionalnih testova.
-Testeri također pomažu product owneru sa izradom kriterija za uspješno prihvaćanje rezultata testova \cite{mundra2013practical}.
-Bitno je napomenuti kako su i developeri i testeri dio istog tima te  kao tim imaju zajednički cilj - isporuka najkvalitetnijeg proizvoda moguće unutar zadanih parametara.
+Glavna uloga testera, kao i samog procesa testiranja, je pružiti dodatnu sigurnosnu mrežu, što čini zadnju kariku u lancu procesa testiranja i osiguranja kvalitete proizvoda.
+Dok su programeri (\textit{developeri, engl. developers}) zaduženi za pisanje unit testova, testeri su odgovorni za pisanje i izvršavanje funkcionalnih testova.
+Osim toga, testeri surađuju s vlasnicima proizvoda (\textit{product ownerima, engl. product owners}) na definiranju kriterija za prihvaćanje, koji određuju kada je određeni dio softvera spreman za puštanje u produkciju \cite{mundra2013practical}.
+
+Bitno je napomenuti kako su i developeri i testeri dio istog tima, te kao takvi dijele zajednički cilj - isporuku najkvalitetnijeg proizvoda moguće unutar zadanih parametara.
+Iako su njihove uloge različite, one se međusobno nadopunjuju.
+Dok developeri fokusiraju svoje napore na razvoj funkcionalnosti, testeri osiguravaju da te funkcionalnosti rade prema očekivanjima i zadanim specifikacijama.
+
+Testeri igraju ključnu ulogu u ranom otkrivanju grešaka koje bi mogle imati značajan utjecaj na korisničko iskustvo i na stabilnost samog proizvoda.
+Njihova odgovornost nije samo identificirati greške, već i raditi na tome da se one isprave prije nego što proizvod dospije do krajnjih korisnika.
+Ova preventivna uloga testera može značajno smanjiti troškove i vrijeme potrebno za naknadne popravke, što dugoročno doprinosi uspjehu projekta.
+
+Osim tehničkih aspekata, testeri također imaju važnu ulogu u komunikaciji unutar tima.
+Njihova sposobnost da jasno i precizno komuniciraju o otkrivenim problemima te da surađuju s developerima i product ownerima osigurava da se svi problemi riješe na vrijeme i na odgovarajući način.
+Na taj način, testeri ne samo da pomažu u održavanju tehničke kvalitete proizvoda, već također doprinose i općoj koheziji i učinkovitosti tima.
+
+U kontekstu agilnih metoda razvoja softvera, uloga testera postaje još značajnija.
+Agilni timovi često rade u kratkim iteracijama (\textit{sprintovima}), gdje je brzina isporuke novih funkcionalnosti ključna.
+U takvim uvjetima, testeri moraju biti uključeni od samog početka razvoja kako bi osigurali kontinuirano testiranje i osiguranje kvalitete kroz cijeli razvojni ciklus.
+Njihova proaktivnost i fleksibilnost u pristupu testiranju omogućuju timu da brzo reagira na promjene i isporučuje funkcionalan i stabilan softver na kraju svake iteracije.
+
+Uloga testera u timu nije samo tehnička, već i strateška.
+Oni ne samo da osiguravaju da proizvod radi prema specifikacijama, već također pridonose stvaranju kulture kvalitete unutar tima.
+Kroz svoje aktivnosti, testeri omogućuju timu da isporuči visoko kvalitetan proizvod koji zadovoljava potrebe korisnika i održava reputaciju tvrtke na tržištu.

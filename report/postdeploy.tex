@@ -1,32 +1,41 @@
 \chapter{Testiranje nakon nadogradnje na novu verziju}\label{postdeploy}
 
-Jedna od čestih aktivnosti svakog razvojnog tima je nadogradnja programa na novu verziju.
-U poduzeću je praksa da se pušta u produkcijski rad nova verzija programa jednom mjesečno za glavnog klijenta. 
-Kako klijent ima postrojenja na 6 kontinenta uz dodatna postrojenja koja se nalaze u međunarodnim vodama svih svjetskih oceana proces nadogreadnje je podijeljen po regijama.
-To su Americas (Sjeverja i Južna Amerika), EU (Europa i Bliski istok + Afrika) te AP (Azija i Pacifik).
-Svaka od regije ima više od 15 postrojenja koja koriste zasebne servere što znači da se nadogradnja vrši na više od 15 lokacija po regiji.
-Već iz ovoga je izvjesno kako je to puno potencijalnih problema i zastoja koja se mogu pojaviti te treba osigurati da je proces nadogranje čim je više optimalan bez nepotrebnih zastoja i prekida u radu.
+Jedna od ključnih aktivnosti svakog razvojnog tima je redovita nadogradnja softvera na novu verziju.
+U našem poduzeću, uobičajena praksa je implementacija nove verzije softvera jednom mjesečno za glavnog klijenta.
+S obzirom na to da klijent ima postrojenja na šest kontinenata, uključujući dodatna postrojenja smještena u međunarodnim vodama svih svjetskih oceana, proces nadogradnje podijeljen je po regijama.
+
+Te regije su:
+\begin{itemize}
+    \item Americas (Sjeverna i Južna Amerika),
+    \item EMEA (Europa, Bliski istok i Afrika),
+    \item APAC (Azija i Pacifik).
+\end{itemize}
+
+Svaka od ovih regija obuhvaća više od 15 postrojenja koja koriste zasebne poslužitelje, što znači da se nadogradnja mora provesti na više od 15 lokacija unutar svake regije.
+Već iz ove strukture vidljivo je da proces nadogradnje nosi sa sobom značajan rizik od potencijalnih problema i zastoja koji se mogu pojaviti tijekom implementacije.
+Stoga je od ključne važnosti osigurati da proces nadogradnje bude što optimalniji, uz minimalne prekide u radu i bez nepotrebnih zastoja.
 
 \section{Postojeći način testiranja}\label{current_postdeploy}
-Do uvođenja automstkih testova standardna procedura se sastojala od toga da AM regiju detaljno testira 3-4 testera (inženjera za kontrolu kvalitete - QA) koji bi svaki od njih provjerio 3 do 4 postrojenja (site).
-U prosjeku, za provjeriti jedno postrojenje je trebalo 20 do 30 minuta kako bi se osiguralo da su sve promjene aplicirane ispravno te da nisu izazvale neželjene nuspojave i prestanak rada postojećih funkcionalnosti.
-Naravno, zbog velikog broja funkcionalnosti te nedostatka vremena da se svaka od njih ručno provjeri bili smo vrlo izbirljivi što će se testirati s obzirom na kritičnost neke funkcionalnosti.
-Cijeli taj proces bi trajao oko 1:30 do 2 sata po članu test tima, a sve ukupno bi se trošak procijenio na 6-7 radnih čovjek-sati.
-Ako to pomnoćimo s cijenom rada lako se dolazi do ukupnog troška testiranja nakon nadogradnje.
+rije uvođenja automatskih testova, standardna procedura uključivala je detaljno testiranje AM regije koje je provodilo 3 do 4 testera, odnosno inženjera za kontrolu kvalitete (QA).
+Svaki tester bi provjeravao 3 do 4 postrojenja (site).
+U prosjeku, za provjeru jednog postrojenja bilo je potrebno između 20 i 30 minuta kako bi se osiguralo da su sve promjene ispravno primijenjene te da nisu izazvale neželjene nuspojave ili prestanak rada postojećih funkcionalnosti.
 
-Nakon što se verificiralo da je novi paket programa ispravan, te ako klijenti nisu prijavili ozbiljne probleme koji ih spriječavaju u radu putem sustava za prijavu kvara (\emph{showstopper}), moglo se pristupiti nadogradnji sljedeće regije Asia Pacific.
+S obzirom na velik broj funkcionalnosti i ograničeno vrijeme, bilo je nužno selektivno pristupiti odabiru onih funkcionalnosti koje će se testirati, pri čemu je ključni kriterij bila kritičnost pojedine funkcionalnosti.
+Cijeli proces trajao je između 1,5 i 2 sata po članu testnog tima, dok je ukupni trošak procijenjen na 6 do 7 radnih čovjek-sati.
+Jednostavnom množenjem s cijenom rada dolazi se do ukupnog troška testiranja nakon nadogradnje.
 
-Tada bi se ponovila opet ista procedura, uz eventualne izmjene da bi bio 1 član testinog tima manje kako bi se smanjili prekovremeni sati jer nije bilo potrebe za provjerom svih funkcionalnosti, već je bilo prihvatljivo da se provjeri i reducirani set za koji bi trebalo maksimalno 20 minuta po postrojenju što bi ukupno iznosilo oko 5 čovjek-sati po regiji.
-Iako je to manji trošak, i dalje je značajni trošak. 
-Čim više što se je termin za radove na AP regiji djelomično izvan rednovnog radnog vremena poduzeća tako da treba uračanti i trošak prekovremenog rada.
-To je posebno izraženo za EU regiju kod koje pak termin za radove je u potpunosti izvan redovnog radnog vremena pa je u tom slučaju sav rad je prekovremeni rad.  
+Nakon što bi se verificiralo da je novi paket programa ispravan, te u slučaju da klijenti nisu prijavili ozbiljne probleme koji bi onemogućili daljnji rad (\emph{showstopper}), pristupilo bi se nadogradnji sljedeće regije, Azije i Pacifika.
 
-Uz sve navedeno dodatan problem ručnog testiranja je točnost i preciznost istog.
-Isto tako je normalno za očekivati kako će različiti testeri odraditi posao na različitoj razini kvalitete jer ipak nisu strojevi.
-Zato smo odlučili taj posao prepustiti strojevima.
-Barem u mjeri koliko je to moguće.
+U tom bi se slučaju postupak ponovio s mogućim izmjenama, poput smanjenja broja članova testnog tima za jednog, kako bi se izbjegli prekovremeni sati.
+Ova redukcija testiranja značila je da se provjeravao samo smanjeni set funkcionalnosti, što je zahtijevalo maksimalno 20 minuta po postrojenju, odnosno ukupno oko 5 čovjek-sati po regiji.
+Iako se na taj način smanjio trošak, on je i dalje bio značajan, pogotovo jer se rad na AP regiji djelomično odvijao izvan redovnog radnog vremena, što je povećavalo trošak prekovremenog rada.
+Ovaj problem bio je posebno izražen za EU regiju, gdje se radovi obavljaju potpuno izvan radnog vremena, pa je sav rad bio prekovremeni.
 
-Iz gore navedenog je razvidno kako je bilo potrebno poboljšati proces testiranja nadogradnje primarno iz razloga povećanja kvalitete posla.
+Uz sve navedeno, dodatni problem ručnog testiranja bila je točnost i preciznost, pri čemu su različiti testeri provodili testiranja na različitim razinama kvalitete.
+To je razumljivo, s obzirom na to da se radi o ljudima, a ne o strojevima.
+Stoga smo odlučili taj posao, u što većoj mjeri, prepustiti strojevima.
+
+Iz navedenog je jasno kako je bilo nužno unaprijediti proces testiranja nadogradnje, prvenstveno radi povećanja kvalitete rada.
 
 \section{Automatsko tesiranje procesa nadogradnje}
 

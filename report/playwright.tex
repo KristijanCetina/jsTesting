@@ -490,32 +490,67 @@ await expect(page).toHaveURL('/next-page');
 
 
 \section{Generiranje testova}
-Playwright ima mogućnost generiranja testova tako što snima klikanje miša korisnika te to prevodi u kod koji se može izvršavati.
-To je vrlo jednostavan i praktičan način da čak i totalni početnici mogu krenuti s izradom automatskih testova, a kasnije s iskustvom se ti testovi mogu rafinirati i poboljšavati.
-Često je i tako generirai kod dovoljno dobar za upotrebu kod jednostvanijih slučajeva, a zasigurno je dobar za brzo sastavljanje testova da se izbjegne često dosatno tipkanje djelova koda koji se neće kasnije ponovno upotrebljavati.
-To uklanja potrebu za pisanje prilagođenih funkcija kao što radimo prilikom izrade projekta koji planiramo dugo vremena održavati i na taj način se može uštediti dosta vremena.
-Iako, treba biti oprezan s time jer često ušteda vremena na početku vodi do puno utrošenog vremena kasnije, ali to je tema koja je izvan okvira ovog rada.
+Microsoft Playwright pruža moćan alat za automatizaciju testiranja web-aplikacija, omogućujući automatsko generiranje testova putem snimanja korisničkih interakcija, poput klikanja mišem i unosa teksta.
+Ova mogućnost čini Playwright izuzetno pristupačnim alatom za početnike, omogućujući im da brzo započnu s izradom automatskih testova bez potrebe za opsežnim znanjem programiranja.
+Snimanje korisničkih radnji i njihovo automatsko prevođenje u izvršni kod ne samo da ubrzava proces testiranja, već i smanjuje potrebu za ručnim pisanjem ponavljajućih dijelova koda, što je često zamorno i podložno pogreškama.
+
+Generirani kod od strane Playwrighta često je dovoljno robustan za upotrebu u jednostavnijim scenarijima, kao što su osnovne funkcionalnosti web-aplikacija.
+U ovim slučajevima, automatski generirani testovi mogu poslužiti kao osnovna testna pokrivenost koja omogućuje brzo otkrivanje regresijskih problema ili osnovnih grešaka u aplikaciji.
+Na primjer, testovi za provjeru rada forme za prijavu ili osnovnih navigacijskih funkcionalnosti mogu biti brzo sastavljeni pomoću ove metode, čime se osigurava da ključne funkcionalnosti aplikacije ispravno funkcioniraju bez potrebe za detaljnim ručnim pisanjem testova.
+
+Jedna od ključnih prednosti ovog pristupa je eliminacija potrebe za pisanjem prilagođenih funkcija koje su često potrebne u dugotrajnim projektima gdje se očekuje stalno održavanje i nadogradnja.
+Ova prednost postaje očita u situacijama kada je potrebno brzo sastaviti testove za funkcionalnosti koje možda neće biti dugoročno održavane ili u slučajevima kada je cilj samo brza provjera osnovne funkcionalnosti.
+U takvim okolnostima, automatski generirani testovi mogu značajno smanjiti vrijeme potrebno za izradu i održavanje testne suite, omogućujući razvojnim timovima da se usmjere na složenije aspekte razvoja i testiranja.
+
+Međutim, unatoč praktičnosti i brzini koju pruža automatsko generiranje testova, važno je biti svjestan potencijalnih nedostataka ovog pristupa.
+Jedan od glavnih rizika je prekomjerno oslanjanje na automatski generirane testove, što može dovesti do problema u kasnijim fazama razvoja.
+Naime, iako su automatski generirani testovi korisni za brzo sastavljanje osnovne pokrivenosti, često im nedostaje fleksibilnost i prilagodljivost koja je potrebna za složenije testne scenarije.
+Također, generirani kod može sadržavati nepotrebne ili redundantne korake koji mogu otežati održavanje i povećati složenost testne suite tijekom vremena.
+
+Stoga, iako automatsko generiranje testova pomoću Playwrighta može značajno ubrzati proces testiranja, potrebno je pažljivo balansirati između brzine i kvalitete.
+Razvojni timovi bi trebali koristiti ovu mogućnost s oprezom, uzimajući u obzir dugoročne ciljeve projekta i složenost aplikacije.
+U slučajevima kada se očekuje dugoročno održavanje i nadogradnja, može biti korisno dodatno rafinirati i optimizirati generirane testove, ili čak napisati prilagođene testove kako bi se osigurala maksimalna pouzdanost i održivost testnog paketa.
+
 \section{Pokretanje alata za generiranje testova}
 
-Alat za generiranje testova se pokreće putem \texttt{codegen} naredbe koja prima argument URL web stranice za koju se želi generirati testovi.
-URL nije obavezan i može se pokrenuti alat bez njega, a zatim dodati URL izravno u prozoru preglednika.
+Alat za generiranje testova u Microsoft Playwrightu pokreće se putem naredbe \texttt{codegen}, koja kao argument može primiti URL web stranice za koju se želi generirati testove.
+Iako unos URL-a nije obavezan prilikom pokretanja alata, on može biti dodan kasnije izravno u prozoru preglednika koji se otvori.
+Ova fleksibilnost omogućuje korisnicima da započnu generiranje testova na različite načine, ovisno o specifičnim potrebama projekta.
 
-Pokazati ćemo to na promjeru koji se nalazi u službenoj dokumentaciji \footnote{\url{https://playwright.dev/docs/codegen-intro\#running-codegen}} koristeći naredbu
+Kao primjer, koji je preuzet iz službene dokumentacije \footnote{\url{https://playwright.dev/docs/codegen-intro\#running-codegen}}, razmotrit ćemo naredbu:
 \begin{verbatim}
 npx playwright codegen demo.playwright.dev/todomvc
 \end{verbatim}
-\begin{figure}[!h]\begin{center}
-    \includegraphics[width=1\textwidth]{"img/codegenInterface"}
-    \caption{Izgled sučelja za generiranje testova}\label{img:pwCodeGen}
-\end{center}\end{figure}
 
-Na slici \ref{img:pwCodeGen} je prikazan izgled sučelja za generiranje testova koji se sastoji od nekoliko djelova:
+Ova naredba pokreće alat za generiranje testova i otvara zadanu web stranicu unutar sučelja za generiranje.
+\begin{figure}[!h]\begin{center}
+  \includegraphics[width=1\textwidth]{"img/codegenInterface"}
+  \caption{Izgled sučelja za generiranje testova}\label{img:pwCodeGen}
+\end{center}\end{figure}
+Na slici \ref{img:pwCodeGen} prikazan je izgled sučelja za generiranje testova koje se sastoji od nekoliko dijelova:
+
 \begin{itemize}
-    \item prozor preglednika unutar kojeg se izvršava aplikacija - označen s crvenim okvirom (gore)
-    \item prozor unutar kojeg se prikazuje generirani kod - označen s žutim okvirom (dolje)
-    \item Lokator koji će Playwright koristiti se prikazuje kada se stavi miš preko elementa - označen sa zelenim okvirom (unutar prozora preglednika)
+\item Prozor preglednika - označen crvenim okvirom, unutar kojeg se prikazuje i izvršava aplikacija.
+Ovaj prozor omogućava korisniku interakciju s web stranicom kao što bi to učinio u bilo kojem drugom pregledniku.
+\item Prozor za generirani kod - označen žutim okvirom, prikazuje kod koji Playwright automatski generira na temelju korisničkih interakcija s aplikacijom u prozoru preglednika.
+Ovaj kod se može odmah koristiti ili dodatno prilagoditi prema potrebama.
+\item Lokator - označen zelenim okvirom, prikazuje se kada korisnik pomakne miš preko elementa unutar prozora preglednika.
+Lokator je ključan jer definira elemente na stranici s kojima Playwright testovi trebaju interagirati, kao što su tipke, polja za unos, ili linkovi.
 \end{itemize}
 
+Ova struktura sučelja omogućava korisniku da brzo i jednostavno generira testove s minimalnim unosom koda, fokusirajući se na interakcije s korisničkim sučeljem.
+Generirani kod je odmah vidljiv i može se modificirati u realnom vremenu, što olakšava proces prilagodbe testova specifičnim potrebama aplikacije.
+
+Jedan od glavnih benefita korištenja ovog alata jest njegova intuitivnost i pristupačnost, čak i za korisnike s minimalnim iskustvom u pisanju automatiziranih testova.
+Sučelje omogućava neposrednu povratnu informaciju o generiranom kodu, što olakšava učenje i razumijevanje načina na koji Playwright funkcionira.
+Ovo je posebno korisno za timove koji tek započinju s implementacijom automatizacije testiranja i žele brzo izraditi osnovnu testnu suite.
+
+Osim što omogućava brzo generiranje testova, \texttt{codegen} naredba također podržava fleksibilnost prilikom testiranja različitih scenarija.
+Korisnici mogu mijenjati URL-ove unutar sučelja, ponovno pokretati testove, te dodavati ili uklanjati dijelove koda prema potrebi, sve unutar istog alata.
+Ova funkcionalnost čini Playwright izuzetno moćnim alatom za automatizaciju testiranja u dinamičnim okruženjima gdje se zahtjevi i aplikacije često mijenjaju.
+
+Pokretanje alata za generiranje testova pomoću Microsoft Playwrighta predstavlja jednostavan, ali vrlo učinkovit način za kreiranje automatiziranih testova.
+Kombinacija intuitivnog korisničkog sučelja i mogućnosti trenutačnog generiranja koda omogućava razvojnim timovima da brzo postignu visoku razinu pokrivenosti testovima, čak i u ranim fazama razvoja, što može značajno poboljšati ukupnu kvalitetu softverskog proizvoda.
 
 \section{Kontinuirana integracija i testiranje}\label{CI/CD}
 Uvođenje kontinuirane integracije (CI) i kontinuirane dostave (CD) predstavlja jedan od ključnih elemenata suvremenog razvoja softvera, omogućujući timovima bržu, pouzdaniju i konzistentniju isporuku softverskih rješenja. 
@@ -590,13 +625,19 @@ Implementacija CI/CD pipelinea za Playwright donosi brojne prednosti:
 
 \subsection*{Implementacija kontinuiranog testiranja unutar Azure DevOps okruženja}
 
-Konfiguracija u YAML formatu:
+Kontinuirano testiranje predstavlja ključnu komponentu u modernim DevOps procesima, omogućavajući timovima da osiguraju kvalitetu softvera kroz automatizirane testove koji se izvršavaju tijekom cijelog ciklusa razvoja. Unutar Azure DevOps okruženja, implementacija kontinuiranog testiranja se može efikasno postići putem konfiguracije u YAML formatu, koja omogućuje definiranje koraka za automatsko pokretanje testova unutar CI/CD pipelinea.
+
+Jedan od primjera konfiguracije prikazan je u nastavku:
 \begin{verbatim}
-  steps:
-- script: 'npx playwright test tests/postDeployPipelineQA.test.ts --workers 1'
-  workingDirectory: '$(System.DefaultWorkingDirectory)/Playwright_Source/postDeployTests'
+  steps: 
+- script: 'npx playwright test tests/postDeployPipelineQA.test.ts --workers 1' 
+  workingDirectory: '$(System.DefaultWorkingDirectory)/Playwright_Source/postDeployTests' 
   displayName: 'Run The Test'
 \end{verbatim}
+Grafički prikaz konfiguracije je prikazan na slici \ref{img:CI_testConfig}  
+Ova konfiguracija definira korak unutar Azure Pipelinea koji pokreće Playwright testove nakon što se softver implementira.
+Script naredba koristi \texttt{npx} za izvršavanje Playwright testova, a \texttt{workingDirectory} definira direktorij u kojem se testovi nalaze.
+Na ovaj način osigurava se da se testovi pokreću u točno određenom kontekstu, čime se smanjuje rizik od neuspjeha testova zbog neodgovarajućih radnih okruženja.
 
 
 \begin{figure}[!h]\begin{center}
@@ -604,17 +645,24 @@ Konfiguracija u YAML formatu:
   \caption{Izgled Azure Pipelinea sa zasebnim koracima}\label{img:CI_pipelinePreview}
 \end{center}\end{figure}
 
+\ref{img:CI_pipelinePreview} daje pregled cjelokupnog pipelinea.
+
 \begin{figure}[!h]\begin{center}
   \includegraphics[width=1\textwidth]{"img/CI_pipelineDetails"}
   \caption{Detalji koraka za testiranje - posljednji u nizu unutar pipelinea}\label{img:CI_pipelineDetails}
 \end{center}\end{figure}
 
+Slike \ref{img:CI_pipelineDetails}, \ref{img:CI_pipeline} i \ref{img:CI_testConfig} prikazuju detalje specifičnih koraka unutar pipelinea, s posebnim fokusom na korake za testiranje. Ovi prikazi omogućuju vizualni uvid u konfiguraciju i strukturu pipelinea, što olakšava razumijevanje i daljnje prilagodbe procesa testiranja.
+
 \begin{figure}[!h]\begin{center}
   \includegraphics[width=1\textwidth]{"img/CI_pipeline"}
-  \caption{Detalji koraka za testiranje - posljednji u nizu unutar pipelinea}\label{img:CI_pipeline}
+  \caption{Detalji koraka za testiranje - akcije koraka za testiranje}\label{img:CI_pipeline}
 \end{center}\end{figure}
 
 \begin{figure}[!h]\begin{center}
   \includegraphics[width=1\textwidth]{"img/CI_testConfig"}
-  \caption{Detalji koraka za testiranje - posljednji u nizu unutar pipelinea}\label{img:CI_testConfig}
+  \caption{Detalji konfiguracije samog testa}\label{img:CI_testConfig}
 \end{center}\end{figure}
+
+Implementacija ovakvog pristupa omogućuje dosljedno provođenje testiranja tijekom cijelog razvojnog ciklusa, što pomaže u ranom otkrivanju problema i održavanju visoke razine kvalitete softverskog proizvoda.
+Azure DevOps pruža fleksibilnost i moćne alate za integraciju automatiziranih testova, čime se podržava kontinuirana isporuka i brza reakcija na promjene unutar razvojnog tima.
