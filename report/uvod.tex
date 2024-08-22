@@ -1,29 +1,44 @@
 \chapter{Uvod i opis zadatka}\label{OpisIOgranicenja}
-U dinamičnom svijetu razvoja softvera, automatizacija testiranja igra ključnu ulogu u osiguravanju kvalitete proizvoda.
-End-to-end (E2E) testiranje je pristup koji omogućuje simulaciju stvarnog korisničkog iskustva kroz cijeli sustav, od početka do kraja.
-Cilj ovih testova je potvrditi da svi dijelovi sustava funkcioniraju zajedno na predviđeni način.
-Sa sve većom složenošću softverskih sustava i potrebom za bržim izdanjima, automatsko E2E testiranje postaje sve relevantnije. 
-Međutim, ovo testiranje donosi sa sobom niz izazova koje je potrebno adresirati kako bi bilo učinkovito i korisno.
+U kontekstu sve bržeg razvoja softverskih rješenja i povećanih zahtjeva za kvalitetom, automatizacija testiranja se etablirala kao nezaobilazni dio razvojnog procesa. Među različitim vrstama testiranja, end-to-end (E2E) testiranje zauzima posebno mjesto, simulirajući realistične scenarije korištenja kako bi se osiguralo da softverski sustav funkcionira kao koherentna cjelina.
+
+E2E testiranje predstavlja sveobuhvatan pristup provjeri funkcionalnosti aplikacije od početka do kraja, uključujući interakciju s različitim komponentama, bazama podataka, vanjskim sustavima i korisničkim sučeljima. Glavni cilj ovakvog testiranja je potvrditi da su svi dijelovi sustava integrirani i da zajedno ispunjavaju postavljene funkcionalne zahtjeve.
+
+S obzirom na sve veću kompleksnost modernih softverskih sustava, koji često uključuju mnoštvo međusobno povezanih komponenti i usluga, ručno provođenje E2E testova postaje sve zahtjevnije i sklono pogreškama. Automatizacija ovih testova omogućuje značajnu uštedu vremena i resursa, te osigurava dosljednost i ponovljivost testiranja.
+
+Međutim, implementacija automatiziranih E2E testova nije bez izazova. Neki od najčešćih problema uključuju:
+\begin{itemize}
+    \item Krhkost testova: Promjene u korisničkom sučelju ili podacima mogu dovesti do čestih prekida testova, što zahtijeva kontinuirno održavanje.
+    \item Složenost postavke: Konfiguracija okruženja za E2E testiranje može biti kompleksna, posebno za velike i distribuirane sustave.
+    \item Vrijeme izvršavanja: E2E testovi su često dugotrajni, što može usporiti razvojni proces.
+    \item Odabir pravih alata: Izbor odgovarajućih alata za automatizaciju E2E testiranja ovisi o specifičnim potrebama projekta.
+\end{itemize}
+
+Usprkos navedenim izazovima, prednosti automatiziranog E2E testiranja su neosporne.
+Ovakav pristup omogućuje rano otkrivanje i otklanjanje grešaka, poboljšava kvalitetu softvera, smanjuje troškove održavanja i ubrzava proces izdanja.
 
 
 \section*{Opis i definicija problema}
-Automatsko end-to-end testiranje softvera obuhvaća proces kreiranja, izvršavanja i održavanja testova koji provjeravaju funkcionalnost aplikacije kao cjeline.
-Problem koji se istražuje u ovom radu može se definirati kroz sljedeće ključne aspekte:
+Automatizirano end-to-end (E2E) testiranje predstavlja integralni dio suvremenog razvoja softvera, omogućavajući sveobuhvatnu provjeru funkcionalnosti aplikacije od početka do kraja.
+Međutim, implementacija i održavanje učinkovitih E2E testova suočava se s nizom izazova koji ograničavaju njihovu sveobuhvatnu primjenu.
 
-Složenost Kreiranja Testova: Kreiranje automatskih E2E testova zahtijeva duboko razumijevanje svih dijelova sustava i njihovih međusobnih interakcija.
-Ovo može biti izuzetno složeno u velikim i distribuiranim sustavima.
+Složenost dizajna testova predstavlja jedan od ključnih problema.
+Kreiranje robusnih E2E testova zahtijeva duboko razumijevanje kompleksnih interakcija unutar sustava, što se posebno ističe u velikim i distribuiranim arhitekturama.
+Svaka promjena u sustavu može utjecati na višestruke testove, zahtijevajući njihovu reviziju ili ponovno pisanje.
 
-Održavanje Testova: S obzirom na česte promjene u kodu i sistemskim zahtjevima, automatski E2E testovi zahtijevaju redovno održavanje kako bi ostali relevantni.
-Svaka promjena može potencijalno zahtijevati modifikaciju ili kreiranje novih testova.
+Održivost testova je još jedan izazov koji se javlja zbog dinamične prirode razvoja softvera.
+Česte promjene u kodu, korisničkom sučelju i podacima mogu dovesti do zastarjelosti postojećih testova, što zahtijeva kontinuirana ulaganja u njihovo održavanje.
 
-Izvršavanje Testova: Automatski E2E testovi često traju duže od drugih vrsta testova (kao što su unit testovi ili integracijski testovi) zbog svoje prirode koja obuhvaća cijeli sustav. 
-Ovo može rezultirati dugim vremenom izvršavanja i problemima s performansama.
+Vrijeme izvršavanja predstavlja značajnu prepreku za široku primjenu E2E testova.
+Zbog sveobuhvatne prirode, ovi testovi obično zahtijevaju značajno više vremena za izvršavanje u usporedbi s drugim vrstama testova (npr. unit testovima).
+Dugo trajanje izvršavanja može usporiti razvojni proces i otežati brzu povratnu informaciju.
 
-Pouzdanost Testova: Testovi moraju biti pouzdani, tj. rezultati testiranja moraju biti točni i konzistentni. 
-Lažno pozitivni ili negativni rezultati mogu dovesti do gubitka povjerenja u testove i dodatnih troškova.
+Pouzdanost rezultata je ključna za uspjeh automatiziranih testova.
+Lažno pozitivni ili negativni rezultati mogu dovesti do gubitka povjerenja u testnu infrastrukturu i uzrokovati nepotrebne troškove.
+Faktori koji utječu na pouzdanost uključuju stabilnost testnog okruženja, kvalitetu testnih podataka i robusnost same testne logike.
 
-Integracija sa CI/CD Procesima: Automatsko E2E testiranje mora biti integrirano s kontinuiranim integracijskim i kontinuiranim isporučnim (CI/CD) procesima kako bi podržalo agilne prakse razvoja softvera. Ovo zahtijeva visok nivo automatizacije i orkestracije.
-
+Integracija s CI/CD procesima je još jedan aspekt koji treba pažljivo razmotriti.
+Uspješna implementacija automatiziranih E2E testova zahtijeva njihovu tijesnu integraciju s kontinuiranim integracijskim i isporučnim (CI/CD) procesima.
+Ovo podrazumijeva visok stupanj automatizacije, orkestracije i usklađenosti s postojećim razvojnim praksama.
 
 \section*{Struktura rada}
 Struktura ovoga rada podjeljena je u logičke cjeline.
