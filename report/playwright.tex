@@ -1,22 +1,30 @@
 \chapter{Alat Playwright}\label{ch_playwright}
-Playwright je open-source biblioteka za automatizaciju testiranja web preglednika i web skrapanja koju je razvio Microsoft. Omogućuje automatizaciju testiranja web aplikacija na Chromiumu, Firefoxu i WebKit-u s jednim API-jem.
+Playwright je open-source biblioteka za automatizaciju testiranja web preglednika i web skrapanja koju je razvio Microsoft.
+Omogućuje automatizaciju testiranja web aplikacija na Chromiumu, Firefoxu i WebKit-u s jednim API-jem.
 
-Prednosti Playwrighta:
+Playwright se ističe nizom prednosti koje ga čine pogodnim alatom za testiranje web aplikacija u akademskom i industrijskom okruženju.
+Prvo, jednostavnost korištenja predstavlja ključnu značajku Playwrighta.
+Njegovo intuitivno sučelje (API) podsjeća na dobro poznate alate poput jQuery-ja i Cypressa, čime olakšava učenje i implementaciju testova čak i za manje iskusne korisnike.
 
-\begin{itemize}
+Nadalje, Playwright je visoko optimiziran za brzinu i pouzdanost, što je osobito važno u kontekstu testiranja produkcijskih okruženja.
+Njegova efikasnost omogućava smanjenje vremena izvršenja testova, uz istovremeno povećanje točnosti rezultata, što ga čini preferiranim alatom u dinamičnim razvojnim okruženjima.
 
-\item Jednostavan za korištenje: Playwright ima intuitivan API koji je sličan JQuery-ju i Cypress-u.
-\item Brz i pouzdan: Playwright je optimiziran za brzinu i pouzdanost, što ga čini idealnim za testiranje web aplikacija u produkciji.
-\item Svestran: Playwright se može koristiti za testiranje različitih tipova web aplikacija, uključujući jednostavne web stranice, jednostruke web aplikacije (SPA) i višestruke web aplikacije (MPA).
-\item Podržava više jezika: Playwright se može koristiti s raznim jezicima programiranja, uključujući JavaScript, TypeScript, Python, Java i C\#.
-\end{itemize}
+Svestranost alata očituje se u njegovoj sposobnosti testiranja širokog spektra web aplikacija.
+Od jednostavnih web stranica do složenih arhitektura poput jednostrukih (SPA) i višestrukih (MPA) web aplikacija, Playwright uspješno odgovara na različite zahtjeve modernih web tehnologija.
 
-Playwright se može koristiti za:
-\begin{itemize}
-\item Automatizaciju UI testova: Playwright se može koristiti za pisanje automatiziranih UI testova koji provjeravaju funkcionalnost web aplikacija.
-\item Web skrapanje: Playwright se može koristiti za prikupljanje podataka sa web stranica.
-\item Generiranje screenshot-ova i videozapisa: Playwright se može koristiti za generiranje screenshot-ova i videozapisa web stranica.
-\end{itemize}
+Posebnu vrijednost predstavlja i njegova podrška za više programskih jezika.
+Playwright omogućava pisanje testova na popularnim jezicima kao što su JavaScript, TypeScript, Python, Java i C\#, čime omogućava integraciju u različite razvojne ekosustave te zadovoljava potrebe širokog spektra korisnika, od početnika do iskusnih profesionalaca.
+
+Playwright je alat široke primjene, a njegove funkcionalnosti omogućuju njegovu uporabu u različitim aspektima razvoja i testiranja web aplikacija.
+Jedna od ključnih primjena Playwrighta jest automatizacija testiranja korisničkog sučelja (UI).
+Korištenjem ovog alata moguće je kreirati automatizirane testove koji provjeravaju funkcionalnost web aplikacija, čime se osigurava konzistentnost i pouzdanost softvera, te se smanjuje mogućnost pojave pogrešaka.
+
+Osim toga, Playwright se može koristiti za web scraping, tehniku prikupljanja podataka s web stranica.
+Ova funkcionalnost omogućava programerima i istraživačima učinkovito dohvaćanje i analiziranje podataka iz različitih izvora na internetu, čime se olakšava proces prikupljanja informacija u raznim istraživačkim ili poslovnim kontekstima.
+
+Nadalje, Playwright nudi mogućnost generiranja snimki zaslona (screenshotova) i videozapisa web stranica, što je korisno u svrhe dokumentacije ili analize.
+Ova značajka omogućava vizualnu inspekciju korisničkog sučelja i praćenje tijeka rada aplikacije, što može biti od presudne važnosti u razvojnim i testnim fazama softverskih projekata.
+
     
 \section{Opis i pregled paketa}
 Sistemski zahtjevi za pokretanje Playwrighta su: \footnote{\url{https://playwright.dev/docs/intro\#system-requirements}}
@@ -178,7 +186,8 @@ Primjer DOM strukture:
 Unos se može ispuniti nakon lociranja prema tekstu rezerviranog mjesta:
 
 \begin{verbatim}
-await page.getByPlaceholder('name@example.com').fill('playwright@microsoft.com');
+await page.getByPlaceholder('name@example.com')
+  .fill('playwright@microsoft.com');
 \end{verbatim}
 
 \subsection*{Lociranje prema tekstu}
@@ -201,7 +210,8 @@ await expect(page.getByText('Welcome, John')).toBeVisible();
 Za točno podudaranje:
 
 \begin{verbatim}
-await expect(page.getByText('Welcome, John', { exact: true })).toBeVisible();
+await expect(page.getByText('Welcome, John', 
+  { exact: true })).toBeVisible();
 \end{verbatim}
 
 Za podudaranje s regularnim izrazom:
@@ -310,7 +320,8 @@ Dugi CSS ili XPath lanci su primjer loše prakse koja vodi do nestabilnih testov
 
 \begin{verbatim}
 await page.locator('#tsf > div:nth-child(2) > div.A8SBwf > div.RNNXgb > div > div.a4bIc > input').click();
-await page.locator('//*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input').click();
+await page.locator('//*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input')
+  .click();
 \end{verbatim}
 
 Preporuka je izbjegavati CSS i XPath lokatore kad god je to moguće i umjesto toga koristiti lokatore koji su bliži percepciji korisnika stranice, poput \texttt{page.getByRole()} ili definirati eksplicitne testne atribute koristeći test id-ove.
@@ -433,7 +444,8 @@ await page.locator('ul').locator('li >> text=Item 2').click();
 \texttt{Relative locators}: Korištenje relativnih lokatora za ciljanje elemenata u odnosu na druge elemente.
 
 \begin{verbatim}
-await page.locator('text=Name').locator('..').locator('input').fill('Jane Doe');
+await page.locator('text=Name').locator('..')
+  .locator('input').fill('Jane Doe');
 \end{verbatim}
 
 \subsection*{Složeniji scenariji lociranja}
@@ -447,7 +459,8 @@ await page.locator('button').nth(2).click(); // Klik na treći gumb u nizu
 
 Kombinacija više lokatora za precizno ciljanje.
 \begin{verbatim}
-await page.locator('section').locator('button', { hasText: 'Submit' }).click();
+await page.locator('section').locator('button', 
+  { hasText: 'Submit' }).click();
 \end{verbatim}
 
 Rad s elementima unutar Shadow DOM-a.
@@ -631,9 +644,11 @@ Jedan od primjera konfiguracije prikazan je u nastavku:
 \begin{verbatim}
   steps: 
 - script: 'npx playwright test tests/postDeployPipelineQA.test.ts --workers 1' 
-  workingDirectory: '$(System.DefaultWorkingDirectory)/Playwright_Source/postDeployTests' 
+  workingDirectory: '$(System.DefaultWorkingDirectory)/Playwright_Source/
+    postDeployTests' 
   displayName: 'Run The Test'
 \end{verbatim}
+
 Grafički prikaz konfiguracije je prikazan na slici \ref{img:CI_testConfig}  
 Ova konfiguracija definira korak unutar Azure Pipelinea koji pokreće Playwright testove nakon što se softver implementira.
 Script naredba koristi \texttt{npx} za izvršavanje Playwright testova, a \texttt{workingDirectory} definira direktorij u kojem se testovi nalaze.

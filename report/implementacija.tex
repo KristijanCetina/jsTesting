@@ -213,7 +213,8 @@ constructor(page: Page) {
     this.buttonActionItem = page.locator("//button[@title='Action Items']")
     this.buttonMyAccount = page.locator("//span[.='My Account']")
     this.notificationText = page.locator('p[class="CenNotificationText"]')
-    this.notificationClose = page.locator('//div[@class="CenNotificationClose"]').first()
+    this.notificationClose = 
+        page.locator('//div[@class="CenNotificationClose"]').first()
 }
 \end{verbatim}
 Konstruktor inicijalizira klasu \texttt{BaseMainOptions} instancom \texttt{Page} te dodjeljuje lokatore za različite elemente njihovim odgovarajućim svojstvima, koristeći XPath i CSS selektore.
