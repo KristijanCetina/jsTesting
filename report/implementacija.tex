@@ -6,7 +6,7 @@ U nastavku poglavlja, detaljno će biti opisan izvorni kod korišten za implemen
 
 Glavna svrha prikazane skripte jest demonstracija strukturiranog pristupa automatizaciji testiranja web aplikacija koristeći Playwright.
 Korištenjem modela objekata stranica (POM - Page Object Model) i modularnih funkcija, osigurava se čitljivost i održivost testova. 
-Svaka stranica, definisana u JSON konfiguraciji, prolazi kroz slijed provjera funkcionalnosti, omogućujući fleksibilnost u uključivanju ili isključivanju određenih testnih koraka prema potrebi.
+Svaka stranica, definirana u JSON konfiguraciji, prolazi kroz slijed provjera funkcionalnosti, omogućujući fleksibilnost u uključivanju ili isključivanju određenih testnih koraka prema potrebi.
 
 Ovo poglavlje će se detaljno baviti procesom uvođenja i inicijalizacije potrebnih komponenti, deklaracijom varijabli za instanciranje POM klasa, konfiguracijom testova, te glavnim testnim skriptama. 
 Također, uključit će se i objašnjenje pomoćnih funkcija koje povećavaju modularnost i održivost koda, kao i pregled baznih objekata stranica korištenih u testovima.
@@ -37,7 +37,7 @@ import { format } from 'date-fns/format';
 import { enGB } from 'date-fns/locale';
 \end{verbatim}
 
-Navedene komande uvoze djelove Playwright biblioteke potrebne za učitavanje stranice kao i provjeru dobivenih rezultata s očekivanim vrijednostima.
+Navedene komande uvoze dijelove Playwright biblioteke potrebne za učitavanje stranice kao i provjeru dobivenih rezultata s očekivanim vrijednostima.
 Nadalje, cijeli proizvod je podijeljen u manje komponente koje se dijele unutar programa te su isti definirani u POMu.
 Podaci o stranicama koje treba testirati su učitani putem JSON formata te također se koristi \texttt{date-fns} biblioteka za manipulaciju i formatiranje datuma.
 
@@ -58,7 +58,7 @@ let myAccount: MyAccount;
 
 \section{Konfiguracija testova}
 Globalna konfiguracija testova je definirana u \texttt{/playwright.config.ts} datoteci, ali je moguće za svaki test definirati dodatne parametre ili nadvladati globalne kada je to potrebno.
-Za ovaj test je dodatno definirano da želimo da se izvršava paralelnom načinu izvođenja kako bi se poboljšale performase s obzirom da nema potrebe da se čeka završetak jednog testa da bi se pokrenuo naredni.
+Za ovaj test je dodatno definirano da želimo da se izvršava paralelnom načinu izvođenja kako bi se poboljšale performanse s obzirom na to da nema potrebe da se čeka završetak jednog testa da bi se pokrenuo naredni.
 To je jednostavno napravljeno sljedećom linijom koda:
 \begin{verbatim}
 test.describe.configure({ mode: 'parallel' });
@@ -184,7 +184,7 @@ async function login(page: Page) {
 
 \section{Bazni objektni model stranice}
 
-U nastavku slijedi objašanjenje definicije klase TypeScript za \texttt{BaseMainOptions} koja se koristi za pristupanje elementima na stranici.
+U nastavku slijedi objašnjenje definicije definicije klase TypeScript za \texttt{BaseMainOptions} koja se koristi za pristupanje elementima na stranici.
 
 Definiranje i korištenje zasebnih klasa poboljšava mogućnost ponovne upotrebe koda kao i njegovo održavanje što za posljedicu ima lakše pisanje automatiziranih testova.
 

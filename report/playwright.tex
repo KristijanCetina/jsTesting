@@ -1,4 +1,4 @@
-\chapter{Playwright}\label{ch_playwright}
+\chapter{Alat Playwright}\label{ch_playwright}
 Playwright je open-source biblioteka za automatizaciju testiranja web preglednika i web skrapanja koju je razvio Microsoft. Omogućuje automatizaciju testiranja web aplikacija na Chromiumu, Firefoxu i WebKit-u s jednim API-jem.
 
 Prednosti Playwrighta:
@@ -30,7 +30,7 @@ Sistemski zahtjevi za pokretanje Playwrighta su: \footnote{\url{https://playwrig
 Omogućava testiranje na Chromium, Firefox i WebKit engenima \footnote{\url{https://www.npmjs.com/package/playwright\#documentation--api-reference}} koji se koriste u modernim web preglednicima.
 
 Paket omogućava izvršavanje testova u UI načinu rada kao i u \emph{headless} načinu rada prilikom kojeg se ne vide koraci kako se kreće po web stranici nego se na kraju testa dobije izvještaj o uspješnosti testiranja.
-To je vrlo koristno kada se koriste automatski načini objavljivanja koda koji onda može izvršiti testiranje prilikom svake promjene koda.
+To je vrlo korisno kada se koriste automatski načini objavljivanja koda koji onda može izvršiti testiranje prilikom svake promjene koda.
 
 \section{Instalacija}
 
@@ -60,19 +60,19 @@ tests-examples/
   demo-todo-app.spec.ts
 \end{verbatim}
 
-Primjetimo kako je uvrijeđena norma da se datoteke koje sadrže testove imaju \texttt{.spec} ispred oznake tipa datoteke uz zadržavanje istog imena. Čak ih i razni editori koda označavaju s drugim ikonama kako bi bili vizualno lakše raspoznatljivi od datoteka koje sadrže izvorni komponenti kao što je vidljivo na slici \ref{img:filesLogos}.
+Primijetimo kako je uvrijeđena norma da se datoteke koje sadrže testove imaju \texttt{.spec} ispred oznake tipa datoteke uz zadržavanje istog imena. Čak ih i razni editori koda označavaju s drugim ikonama kako bi bili vizualno lakše raspoznatljivi od datoteka koje sadrže izvorni komponenti kao što je vidljivo na slici \ref{img:filesLogos}.
 \begin{figure}[!h]\begin{center}
     \includegraphics[width=1\textwidth]{"img/filesLogos"}
-    \caption{Izgled ikona sa izvornim kodom i testom za komponentu}\label{img:filesLogos}
+    \caption{Izgled ikona s izvornim kodom i testom za komponentu}\label{img:filesLogos}
 \end{center}\end{figure}
 
-Ukoliko se inicijalizacija vrši unutar već postojećeg projekta, što je najčešće i slučaj, konfiguracija zavisnih paketa će biti dodana u postojeću \texttt{package.json} datoteku.
+Ako se inicijalizacija vrši unutar već postojećeg projekta, što je najčešće i slučaj, konfiguracija zavisnih paketa će biti dodana u postojeću \texttt{package.json} datoteku.
 
 \texttt{playwright.config.ts} datoteka sadrži konfiguracije testova kao npr 
 \begin{itemize}
     \item koji se preglednik koristi, 
     \item koja je veličina prozora preglednika, 
-    \item koji se mobilni uređaj koristi u slučaju tesitiranja na mobilnim preglednicima,
+    \item koji se mobilni uređaj koristi u slučaju testiranja na mobilnim preglednicima,
     \item standardno očekivano vrijeme ispunjenja testa (timeout)
 \end{itemize}
 te mnogi drugi preddefinirane i prilagođene opcije konfiguracije.
@@ -507,7 +507,7 @@ Jedan od glavnih rizika je prekomjerno oslanjanje na automatski generirane testo
 Naime, iako su automatski generirani testovi korisni za brzo sastavljanje osnovne pokrivenosti, često im nedostaje fleksibilnost i prilagodljivost koja je potrebna za složenije testne scenarije.
 Također, generirani kod može sadržavati nepotrebne ili redundantne korake koji mogu otežati održavanje i povećati složenost testne suite tijekom vremena.
 
-Stoga, iako automatsko generiranje testova pomoću Playwrighta može značajno ubrzati proces testiranja, potrebno je pažljivo balansirati između brzine i kvalitete.
+Stoga, iako automatsko generiranje testova s pomoću Playwrighta može značajno ubrzati proces testiranja, potrebno je pažljivo balansirati između brzine i kvalitete.
 Razvojni timovi bi trebali koristiti ovu mogućnost s oprezom, uzimajući u obzir dugoročne ciljeve projekta i složenost aplikacije.
 U slučajevima kada se očekuje dugoročno održavanje i nadogradnja, može biti korisno dodatno rafinirati i optimizirati generirane testove, ili čak napisati prilagođene testove kako bi se osigurala maksimalna pouzdanost i održivost testnog paketa.
 
@@ -549,12 +549,12 @@ Osim što omogućava brzo generiranje testova, \texttt{codegen} naredba također
 Korisnici mogu mijenjati URL-ove unutar sučelja, ponovno pokretati testove, te dodavati ili uklanjati dijelove koda prema potrebi, sve unutar istog alata.
 Ova funkcionalnost čini Playwright izuzetno moćnim alatom za automatizaciju testiranja u dinamičnim okruženjima gdje se zahtjevi i aplikacije često mijenjaju.
 
-Pokretanje alata za generiranje testova pomoću Microsoft Playwrighta predstavlja jednostavan, ali vrlo učinkovit način za kreiranje automatiziranih testova.
+Pokretanje alata za generiranje testova s pomoću Microsoft Playwrighta predstavlja jednostavan, ali vrlo učinkovit način za kreiranje automatiziranih testova.
 Kombinacija intuitivnog korisničkog sučelja i mogućnosti trenutačnog generiranja koda omogućava razvojnim timovima da brzo postignu visoku razinu pokrivenosti testovima, čak i u ranim fazama razvoja, što može značajno poboljšati ukupnu kvalitetu softverskog proizvoda.
 
 \section{Kontinuirana integracija i testiranje}\label{CI/CD}
 Uvođenje kontinuirane integracije (CI) i kontinuirane dostave (CD) predstavlja jedan od ključnih elemenata suvremenog razvoja softvera, omogućujući timovima bržu, pouzdaniju i konzistentniju isporuku softverskih rješenja. 
-U nastavku će biti opisano kako i zašto napraviti jednostavan CI/CD pipeline-a za automatizirano testiranje pomoću Playwrighta.
+U nastavku će biti opisano kako i zašto napraviti jednostavan CI/CD pipeline-a za automatizirano testiranje s pomoću Playwrighta.
 
 CI/CD pipeline je automatizirani niz koraka koji omogućuje brzu i pouzdanu isporuku aplikacija. CI/CD pipeline se sastoji od niza automatiziranih procesa koji uključuju izgradnju (build), testiranje i distribuciju (deployment) aplikacije. 
 Kroz automatizaciju ovih koraka, CI/CD pipeline pomaže u smanjenju rizika od grešaka, ubrzava proces isporuke te osigurava dosljednost i kvalitetu softverskih rješenja.
@@ -563,7 +563,7 @@ Kroz automatizaciju ovih koraka, CI/CD pipeline pomaže u smanjenju rizika od gr
 
 Integracija Playwright-a u CI/CD pipeline omogućava automatizirano izvođenje testova pri svakoj promjeni koda, čime se osigurava da sve funkcionalnosti aplikacije rade ispravno prije nego što se promjene implementiraju u produkciju.
 
-Definicija CI/CD Pipeline-a: Nakon konfiguracije repozitorija, potrebno je definirati CI/CD pipeline. To se obično radi pomoću YAML datoteka koje sadrže instrukcije za izgradnju, testiranje i distribuciju aplikacije. U nastavku je primjer osnovne konfiguracije za GitHub Actions, a može biti generirana automatski prilikom inicijalizacije projekta kao što je prikazana na slici \ref{img:ghActionPrompt}:
+Definicija CI/CD Pipeline-a: Nakon konfiguracije repozitorija, potrebno je definirati CI/CD pipeline. To se obično radi s pomoću YAML datoteka koje sadrže instrukcije za izgradnju, testiranje i distribuciju aplikacije. U nastavku je primjer osnovne konfiguracije za GitHub Actions, a može biti generirana automatski prilikom inicijalizacije projekta kao što je prikazana na slici \ref{img:ghActionPrompt}:
 
 \begin{figure}[!h]\begin{center}
   \includegraphics[width=1\textwidth]{"img/ghActionPrompt"}

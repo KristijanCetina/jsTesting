@@ -1,8 +1,8 @@
-\chapter{Uvod u testiranje programskog rješenje i osiguranje kvalitete}\label{uvodQA}
+\chapter{Testiranje programskog rješenje i osiguranje kvalitete}\label{uvodQA}
 
-Testianje softwareskog proizvoda se provodi u cilju osiguravanja kvalitete samog proizvoda.
+Testiranje softwareskog proizvoda se provodi u cilju osiguravanja kvalitete samog proizvoda.
 Svaka faza razvoja ima svoje specifične zahtjeve i načine testiranja, a njihov pregled je dan na slici \ref{img:testingInScrum}.
-Pojedine funkcije u kodu se pokrivaju unit testovima koji se brinu da pojedine komponente rade ono što su namjenjene na najnižoj razini. To su testovi koji se u pravilu izvršavaju vrlo često prilikom pisanja koda kako bi se osiguralo da promjena neke funkcije ili komponente nije poremetila njen rezultat.
+Pojedine funkcije u kodu se pokrivaju unit testovima koji se brinu da pojedine komponente rade ono što su namijenjene na najnižoj razini. To su testovi koji se u pravilu izvršavaju vrlo često prilikom pisanja koda kako bi se osiguralo da promjena neke funkcije ili komponente nije poremetila njen rezultat.
 
 
 \begin{figure}[!h]\begin{center}
@@ -22,7 +22,7 @@ Ovaj korak je ključan za rano otkrivanje i ispravljanje potencijalnih problema 
 Nakon završetka razvoja nove funkcionalnosti, slijedi završno funkcionalno testiranje.
 U ovoj fazi, funkcionalnost se testira kako bi se osiguralo da ispunjava sve zadane kriterije i da je spremna za implementaciju u produkciju.
 Pored toga, izrađuju se i automatizirani testovi, koji se zatim redovito izvršavaju u zadanom intervalu.
-Ovi automatizirani testovi imaju ključnu ulogu u osiguravanju da uvođenje novih funkcionalnosti ne izaziva nepredviđene pogreške u već postojećim, ispravno funkcionirajućim dijelovima softvera.
+Ovi automatizirani testovi imaju ključnu ulogu u osiguravanju da uvođenje novih funkcionalnosti ne izaziva nepredviđene pogreške u postojećim, ispravno funkcionirajućim dijelovima softvera.
 Ovaj oblik testiranja poznat je kao regresijsko testiranje.
 
 Regresijsko testiranje služi kao zaštitni mehanizam, osiguravajući da svaka promjena u softveru ne uvodi nove greške ili probleme.
@@ -56,12 +56,12 @@ Neki od ciljeva testiranja su: \cite{quadri2010software}
 Cilj testiranja nije samo otkrivanje pogrešaka u kodu ili dizajnu, već i potvrđivanje da softver ispunjava svoju namjenu te radi onako kako je zamišljen.
 U tom kontekstu, verifikacija i validacija predstavljaju dvije ključne aktivnosti koje osiguravaju ispravnost i pouzdanost softverskog proizvoda.
 
-Verifikacija je proces kojim se provjerava da li je softver pravilno implementiran u skladu s definiranim zahtjevima i specifikacijama.
-Ova faza testiranja fokusira se na pitanje: "Da li gradimo proizvod na ispravan način?" Verifikacija se odnosi na sve aspekte razvoja softvera, uključujući pregled kodova, provjere dizajna, statičke analize, i jedinicna testiranja.
+Verifikacija je proces kojim se provjerava je li softver pravilno implementiran u skladu s definiranim zahtjevima i specifikacijama.
+Ova faza testiranja fokusira se na pitanje: "Da li gradimo proizvod na ispravan način?" Verifikacija se odnosi na sve aspekte razvoja softvera, uključujući pregled kodova, provjere dizajna, statičke analize, i jedinična testiranja.
 Kroz ove aktivnosti, tim osigurava da su svi zadani kriteriji i specifikacije ispunjeni prije nego što softver bude pušten u uporabu.
 
 S druge strane, validacija se odnosi na potvrđivanje da softver radi ono što bi trebao raditi u stvarnim uvjetima korištenja, odnosno da ispunjava očekivanja krajnjih korisnika.
-Validacija odgovara na pitanje: "Da li smo izgradili pravi proizvod?" U ovoj fazi, fokus je na funkcionalnim testovima, testovima performansi, korisničkom testiranju i integracijskim testovima.
+Validacija odgovara na pitanje: "Jesmo li izgradili pravi proizvod?" U ovoj fazi, fokus je na funkcionalnim testovima, testovima performansi, korisničkom testiranju i integracijskim testovima.
 Validacija se provodi kako bi se osiguralo da softver ispunjava svoje ciljeve u stvarnom svijetu te da zadovoljava potrebe korisnika i poslovnih zahtjeva.
 
 Jedan od ključnih rezultata testiranja, bilo da se radi o verifikaciji ili validaciji, je izvještaj o testiranju (\textit{test report}).
@@ -77,7 +77,7 @@ Kombinacija ovih procesa omogućava isporuku kvalitetnog, pouzdanog i funkcional
 Verifikacija i validacija kroz testiranje pružaju sveobuhvatnu provjeru ispravnosti softvera, omogućujući da se otkriju i isprave svi problemi prije nego što proizvod dospije do krajnjih korisnika.
 Ove aktivnosti nisu samo tehnička nužnost, već su i ključne za postizanje visoke razine kvalitete i zadovoljstva korisnika, što u konačnici doprinosi uspjehu softverskog proizvoda na tržištu.
 
-\subsection*{Prioretiziranje pokrivenosti}
+\subsection*{Prioritiziranje pokrivenosti}
 U idealnom svijetu s neograničenim resursima, svaki dio izvornog koda i svaka funkcionalnost softvera bili bi pokriveni testovima, osiguravajući maksimalnu razinu pouzdanosti i kvalitete.
 Međutim, u stvarnosti, resursi poput vremena, radne snage i financija su ograničeni, što zahtijeva pažljivo planiranje i prioritiziranje pri odlučivanju o tome koje će funkcionalnosti i dijelovi koda biti pokriveni testovima.
 Ova odluka je ključna za održavanje učinkovitosti i usmjeravanje napora prema onim aspektima softvera koji su najkritičniji za njegovu ispravnost i korisničko iskustvo.
@@ -135,7 +135,7 @@ Glavna uloga testera, kao i samog procesa testiranja, je pružiti dodatnu sigurn
 Dok su programeri (\textit{developeri, engl. developers}) zaduženi za pisanje unit testova, testeri su odgovorni za pisanje i izvršavanje funkcionalnih testova.
 Osim toga, testeri surađuju s vlasnicima proizvoda (\textit{product ownerima, engl. product owners}) na definiranju kriterija za prihvaćanje, koji određuju kada je određeni dio softvera spreman za puštanje u produkciju \cite{mundra2013practical}.
 
-Bitno je napomenuti kako su i developeri i testeri dio istog tima, te kao takvi dijele zajednički cilj - isporuku najkvalitetnijeg proizvoda moguće unutar zadanih parametara.
+Bitno je napomenuti kako su i developeri i testeri dio istog tima, te kao takvi dijele cilj - isporuku najkvalitetnijeg proizvoda moguće unutar zadanih parametara.
 Iako su njihove uloge različite, one se međusobno nadopunjuju.
 Dok developeri fokusiraju svoje napore na razvoj funkcionalnosti, testeri osiguravaju da te funkcionalnosti rade prema očekivanjima i zadanim specifikacijama.
 
@@ -145,7 +145,7 @@ Ova preventivna uloga testera može značajno smanjiti troškove i vrijeme potre
 
 Osim tehničkih aspekata, testeri također imaju važnu ulogu u komunikaciji unutar tima.
 Njihova sposobnost da jasno i precizno komuniciraju o otkrivenim problemima te da surađuju s developerima i product ownerima osigurava da se svi problemi riješe na vrijeme i na odgovarajući način.
-Na taj način, testeri ne samo da pomažu u održavanju tehničke kvalitete proizvoda, već također doprinose i općoj koheziji i učinkovitosti tima.
+Tako, testeri ne samo da pomažu u održavanju tehničke kvalitete proizvoda, već također doprinose i općoj koheziji i učinkovitosti tima.
 
 U kontekstu agilnih metoda razvoja softvera, uloga testera postaje još značajnija.
 Agilni timovi često rade u kratkim iteracijama (\textit{sprintovima}), gdje je brzina isporuke novih funkcionalnosti ključna.

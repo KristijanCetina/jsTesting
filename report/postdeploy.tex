@@ -37,24 +37,24 @@ Stoga smo odlučili taj posao, u što većoj mjeri, prepustiti strojevima.
 
 Iz navedenog je jasno kako je bilo nužno unaprijediti proces testiranja nadogradnje, prvenstveno radi povećanja kvalitete rada.
 
-\section{Automatsko tesiranje procesa nadogradnje}
+\section{Automatsko testiranje procesa nadogradnje}
 
-Glavni cilj prelaska na autimatski način testiranja je bio povećati preciznost testova i osigurati da se ne izostavi niti jedan korak koji se provjeravao pri ručnom testiranju.
+Glavni cilj prelaska na automatski način testiranja je bio povećati preciznost testova i osigurati da se ne izostavi niti jedan korak koji se provjeravao pri ručnom testiranju.
 
-Drugi cilj je bio smanjti vrijeme potrebano za testiranje sa prethodnih 30 minuta na ispod 5 minuta.
+Drugi cilj je bio smanjiti vrijeme potrebno za testiranje s prethodnih 30 minuta na ispod 5 minuta.
 
-Dodatan cilj je bio omogućiti daljni rast broja klijenata i instalacija koja se mogu nadograditi istovremeno, a bez da se mora uložiti značajno više vremena.
+Dodatan cilj je bio omogućiti daljnji rast broja klijenata i instalacija koja se mogu nadograditi istovremeno, a bez da se mora uložiti značajno više vremena.
 Idealno smo htjeli postići $\mathcal{O}(\log n)$ rast potrošenog vremena za svakog novog klijenta.
 
-Nakon što je provedena nadogradnja s automatskim tesiranjem potvrđeno je da su glavni ciljevi ostvareni te da će se nastaviti s implementacijom primjenjene tehnologije i za ostale potrebe.
+Nakon što je provedena nadogradnja s automatskim testiranjem potvrđeno je da su glavni ciljevi ostvareni te da će se nastaviti s implementacijom primijenjene tehnologije i za ostale potrebe.
 Konkretno, vrijeme testa po postrojenju je iznosilo od 2-4 minuta, ovisno o performansama servera i količini podataka koje klijent ima za razne izvještaje.
 Na slici \ref{img:fullTestPass} je prikazan izvještaj koji Playwright generira nakon završenog testiranja.
 \begin{figure}[!h]\begin{center}
     \includegraphics[width=0.8\textwidth]{"img/fullTestPass"}
-    \caption{Izvještaj nakon završenog automatskog tesiranja}\label{img:fullTestPass}
+    \caption{Izvještaj nakon završenog automatskog testiranja}\label{img:fullTestPass}
 \end{center}\end{figure}
  
 Niti jedan test nije pokazivao znakove problema, ako ih zaista nije bilo (\emph{false-negative} testovi).
-Svi uočeni problemi nakon isporuke nove verzije su bili rješeni u rekordnom roku, a tome je pridonjelo vrlo kratko vrijeme do otkrivanja problema.
+Svi uočeni problemi nakon isporuke nove verzije su bili riješeni u rekordnom roku, a tome je pridonijelo vrlo kratko vrijeme do otkrivanja problema.
 
-Kao dodatan benefit je primjećeno da se sada testeri mogu više fokusirati na specifične rubne slučajeve koje je potrebano verificirati te na taj način dodatno smanjiti broj prijavljenih nedostataka od strane korisnika te poslijedično povisiti kvalitetu isporučenog proizvoda.
+Kao dodatan benefit je primijećeno da se sada testeri mogu više fokusirati na specifične rubne slučajeve koje je potrebno verificirati te tako dodatno smanjiti broj prijavljenih nedostataka od strane korisnika te posljedično povisiti kvalitetu isporučenog proizvoda.
